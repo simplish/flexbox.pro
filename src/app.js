@@ -26,7 +26,7 @@ import {
   examples
 } from './model';
 
-import FlexItem from './FlexItem';
+import FlexItem from './Flexitem';
 import Example from './Example';
 
 
