@@ -1,0 +1,56 @@
+.flex-item {
+  background-color: red;
+  border: 1px solid black;
+}
+
+.flex-item.dimension-100 {
+  width: 100px;
+  height: 100px;
+}
+
+.window {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .controls {
+    flex-grow: 1;
+    flex-basis: 0;
+    align-items: stretch;
+    display: flex;
+  }
+
+  .controls > div {
+    padding: 20px;
+    margin-left: 2px;
+  }
+
+  .controls > div:first-child {
+    border-left: none;
+  }
+
+  .left {
+    flex-grow: 1;
+    flex-basis: 0;
+  }
+
+  .right {
+    flex-grow: 1;
+    flex-basis: 0;
+  }
+
+
+  .view {
+    flex-grow: 1;
+    flex-basis: 0;
+    border-top: 0 solid #555;
+    background-color: rgba(255, 255, 0, 0.1);
+    display: flex;
+
+  }
