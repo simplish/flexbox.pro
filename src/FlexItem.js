@@ -2,7 +2,7 @@ import {
   div
 } from '@cycle/dom';
 
-import util from './Util';
+import util from './util';
 
 export default class FlexItem {
   constructor(content = '') {

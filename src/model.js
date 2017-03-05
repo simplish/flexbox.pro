@@ -1,5 +1,5 @@
-import FlexItem from './Flexitem';
-import Example from './Example';
+import FlexItem from './flexitem';
+import Example from './example';
 
 const defaultState = {
   changedTo: '',
