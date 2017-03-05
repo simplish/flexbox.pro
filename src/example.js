@@ -1,5 +1,6 @@
 import {
-  option
+  option,
+  p
 } from '@cycle/dom';
 
 export default class Example {
@@ -16,5 +17,9 @@ export default class Example {
           }
         }, example.title);
       });
+  }
+
+  toHyperscript() {
+    return p(this.title);
   }
 }

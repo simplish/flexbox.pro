@@ -32,9 +32,11 @@ import Example from './example';
 
 const Operations = {
   change: value => state => {
+    console.log(value, typeof value, examples, examples.get(value));
+    const selectedValue = parseInt(value);
     return Object.assign({},
       state, {
-        changeTo: value
+        selectedExample: examples.get(selectedValue)
       }
     );
   },
@@ -101,10 +103,11 @@ function view(state$) {
                   })
                 ])
               ])
-            ]),
-            p(state.changeTo)
+            ])
           ]),
-          div('.right')
+          div('.right', [
+            state.selectedExample.toHyperscript()
+          ])
         ]),
         div('.view', state.flexItems.map(flexItem => flexItem.generateHyperScript()))
       ])
