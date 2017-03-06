@@ -35,6 +35,7 @@ export default function view(state$) {
                   label({attrs: {for: 'number-of-flex-items'}}, 'Antal flex items'),
                   input('#number-of-flex-items.form-control', {
                     attrs: {
+                      value: 3,
                       type: 'range',
                       min: minNumberOfFlexItems,
                       max: maxNumberOfFlexItems
