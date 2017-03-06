@@ -26,7 +26,9 @@ const Operations = {
     const selectedValue = parseInt(value);
     return Object.assign({},
       state, {
-        selectedExample: examples.get(selectedValue)
+        controlSettings: Object.assign({}, state.controlSettings,
+            { selectedExample: examples.get(selectedValue) }
+        )
       }
     );
   },
@@ -34,7 +36,9 @@ const Operations = {
     return Object.assign({},
       state, 
       {
-        numberOfFlexItems: parseInt(value)
+        controlSettings: Object.assign({}, state.controlSettings,
+          { numberOfFlexItems: parseInt(value) }
+        )
       }
     );
   }

@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Test 1",
+    "flexItemsStyle": {
+      "background-color": "yellow"
+    }
+  },
+  {
+    "title": "Test 2",
+    "flexItemsStyle": {
+      "background-color": "green"
+    },
+    "flexContainerStyle": {
+      "flex-direction": "row-reverse"
+    }
+  }
+]

@@ -36,7 +36,7 @@ export default function view(state$) {
                   label({attrs: {for: 'number-of-flex-items'}}, 'Antal flex items'),
                   input('#number-of-flex-items.form-control', {
                     attrs: {
-                      value: state.numberOfFlexItems,
+                      value: state.controlSettings.numberOfFlexItems,
                       type: 'range',
                       min: minNumberOfFlexItems,
                       max: maxNumberOfFlexItems
@@ -46,11 +46,11 @@ export default function view(state$) {
               ])
             ])
           ]),
-          div('.right', state.selectedExample.toHyperscript())
+          div('.right', state.controlSettings.selectedExample.toHyperscript())
         ]),
-        div('.view', { style: state.selectedExample.flexContainerStyle }, FlexItem.generateFlexItems(
-          state.numberOfFlexItems,
-          state.selectedExample
+        div('.view', { style: state.controlSettings.selectedExample.flexContainerStyle }, FlexItem.generateFlexItems(
+          state.controlSettings.numberOfFlexItems,
+          state.controlSettings.selectedExample
         ).map(flexItem => flexItem.generateHyperScript()))
       ])
     );

@@ -1,26 +1,23 @@
 import Example from './example';
+const examplesData = require('../examples.json');
 
-const defaultState = {
-  selectedExample: null,
-  numberOfFlexItems: 5,
-  controlsDescription: ''
-};
-
+console.log('type of json examples', typeof examplesJ);
 const examples = new Map();
 
-examples.set(100, 
-  new Example('Test 1', {'background-color': 'yellow'})); // Integer index only.
-examples.set(200, 
-  new Example('Test 2', 
-    {'background-color': 'green'},
-    {'flex-direction': 'row-reverse'}
-  )
-);
+for (const [index, e] of examplesData.entries()) {
+  examples.set(index, new Example(e.title, e.flexItemsStyle, e.flexContainerStyle));
+}
 
 const maxNumberOfFlexItems = 100;
 const minNumberOfFlexItems = 1;
 
-defaultState.selectedExample = examples.get(100);
+const defaultState = {
+  controlSettings: {
+    selectedExample: examples.get(0),
+    numberOfFlexItems: 5
+  },
+  controlsDescription: ''
+};
 
 export {
   defaultState, 
