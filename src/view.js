@@ -15,6 +15,7 @@ import {
 } from './model';
 
 import Example from './example';
+import FlexItem from './flexitem';
 
 
 export default function view(state$) {
@@ -35,7 +36,7 @@ export default function view(state$) {
                   label({attrs: {for: 'number-of-flex-items'}}, 'Antal flex items'),
                   input('#number-of-flex-items.form-control', {
                     attrs: {
-                      value: 3,
+                      value: state.numberOfFlexItems,
                       type: 'range',
                       min: minNumberOfFlexItems,
                       max: maxNumberOfFlexItems
@@ -49,7 +50,7 @@ export default function view(state$) {
             state.selectedExample.toHyperscript()
           ])
         ]),
-        div('.view', state.flexItems.map(flexItem => flexItem.generateHyperScript()))
+        div('.view', FlexItem.generateFlexItems(state.numberOfFlexItems).map(flexItem => flexItem.generateHyperScript()))
       ])
     );
 }

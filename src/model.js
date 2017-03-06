@@ -4,8 +4,7 @@ import Example from './example';
 const defaultState = {
   selectedExample: null,
   numberOfFlexItems: 5,
-  controlsDescription: '',
-  flexItems: FlexItem.generateFlexItems(3) //todo generate this when doing the view.
+  controlsDescription: ''
 };
 
 const examples = new Map();

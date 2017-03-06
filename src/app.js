@@ -36,7 +36,7 @@ const Operations = {
     return Object.assign({},
       state, 
       {
-        flexItems: FlexItem.generateFlexItems(value)
+        numberOfFlexItems: parseInt(value)
       }
     );
   }
