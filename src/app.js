@@ -9,25 +9,17 @@ import {
   run
 } from '@cycle/rxjs-run';
 import {
-  makeDOMDriver,
-  div,
-  select,
-  fieldset,
-  legend,
-  p,
-  input,
-  form, label
+  makeDOMDriver
 } from '@cycle/dom';
 
 import {
   defaultState,
-  minNumberOfFlexItems,
-  maxNumberOfFlexItems,
   examples
 } from './model';
 
 import FlexItem from './flexitem';
-import Example from './example';
+
+import view from './view';
 
 
 const Operations = {
@@ -76,42 +68,6 @@ function model(intents) {
 
   return Rx.Observable.merge(changeOperations$, changeNumberOfFlexItemsOperations$)
     .scan((state, operation) => operation(state), defaultState);
-}
-
-function view(state$) {
-  return state$
-    .startWith(defaultState)
-    .map(state =>
-      div('.window', {}, [
-        div('.controls', [
-          div('.left', {}, [
-            form([
-              fieldset([
-                legend('legend'),
-                div('.form-group', [
-                  label({attrs: {for: 'selecter'}}, 'Exempel'),
-                  select('#selecter.form-control', {}, Example.generateHyperScriptOptions(examples))
-                ]),
-                div('.form-group', [
-                  label({attrs: {for: 'number-of-flex-items'}}, 'Antal flex items'),
-                  input('#number-of-flex-items.form-control', {
-                    attrs: {
-                      type: 'range',
-                      min: minNumberOfFlexItems,
-                      max: maxNumberOfFlexItems
-                    }
-                  })
-                ])
-              ])
-            ])
-          ]),
-          div('.right', [
-            state.selectedExample.toHyperscript()
-          ])
-        ]),
-        div('.view', state.flexItems.map(flexItem => flexItem.generateHyperScript()))
-      ])
-    );
 }
 
 function main({
