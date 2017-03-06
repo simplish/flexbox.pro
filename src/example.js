@@ -1,11 +1,15 @@
 import {
   option,
-  p
+  h1,
+  h2,
+  div
 } from '@cycle/dom';
 
 export default class Example {
-  constructor(title = '') {
+  constructor(title = '', flexItemsStyle, flexContainerStyle = {}) {
     this.title = title;
+    this.flexItemsStyle = flexItemsStyle;
+    this.flexContainerStyle = flexContainerStyle;
   }
 
   static generateHyperScriptOptions(exampleMap) {
@@ -20,6 +24,12 @@ export default class Example {
   }
 
   toHyperscript() {
-    return p(this.title);
+    return [
+      h1(this.title),
+      h2('Flex items style'),
+      div([JSON.stringify(this.flexItemsStyle, null, 2)]),
+      h2('Flex container style'),
+      div([JSON.stringify(this.flexContainerStyle, null, 2)])
+    ];
   }
 }

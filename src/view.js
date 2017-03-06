@@ -46,11 +46,12 @@ export default function view(state$) {
               ])
             ])
           ]),
-          div('.right', [
-            state.selectedExample.toHyperscript()
-          ])
+          div('.right', state.selectedExample.toHyperscript())
         ]),
-        div('.view', FlexItem.generateFlexItems(state.numberOfFlexItems).map(flexItem => flexItem.generateHyperScript()))
+        div('.view', { style: state.selectedExample.flexContainerStyle }, FlexItem.generateFlexItems(
+          state.numberOfFlexItems,
+          state.selectedExample
+        ).map(flexItem => flexItem.generateHyperScript()))
       ])
     );
 }

@@ -1,4 +1,3 @@
-import FlexItem from './flexitem';
 import Example from './example';
 
 const defaultState = {
@@ -9,8 +8,14 @@ const defaultState = {
 
 const examples = new Map();
 
-examples.set(100, new Example('Test 1')); // Integer index only.
-examples.set(200, new Example('Test 2'));
+examples.set(100, 
+  new Example('Test 1', {'background-color': 'yellow'})); // Integer index only.
+examples.set(200, 
+  new Example('Test 2', 
+    {'background-color': 'green'},
+    {'flex-direction': 'row-reverse'}
+  )
+);
 
 const maxNumberOfFlexItems = 100;
 const minNumberOfFlexItems = 1;

@@ -17,8 +17,6 @@ import {
   examples
 } from './model';
 
-import FlexItem from './flexitem';
-
 import view from './view';
 
 
