@@ -1,17 +1,25 @@
-[
-  {
-    "title": "Test 1",
-    "flexItemsStyle": {
-      "background-color": "yellow"
+{
+  "baseStyles": {
+    "flexItemsStyle": {},
+    "flexContainerStyle": {
+      "display": "flex"
     }
   },
-  {
-    "title": "Test 2",
-    "flexItemsStyle": {
-      "background-color": "green"
+  "examples": [
+    {
+      "title": "Test 1",
+      "flexItemsStyle": {
+        "background-color": "yellow"
+      }
     },
-    "flexContainerStyle": {
-      "flex-direction": "row-reverse"
+    {
+      "title": "Test 2",
+      "flexItemsStyle": {
+        "background-color": "green"
+      },
+      "flexContainerStyle": {
+        "flex-direction": "row-reverse"
+      }
     }
-  }
-]
+  ]
+}

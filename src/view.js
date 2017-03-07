@@ -4,7 +4,7 @@ import {
   fieldset,
   legend,
   input,
-  form, label
+  form, label, i
 } from '@cycle/dom';
 
 import {

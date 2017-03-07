@@ -1,9 +1,9 @@
 require('../public/style/bootstrap/bootstrap-theme.css');
 require('../public/style/bootstrap/bootstrap.css');
 require('../public/style/style.css');
+require('../public/fontello/css/fontello.css');
 require('file-loader?name=[name].[ext]!../public/index.html');
-//require('file-loader?name=css/[name].[ext]!../public/style/bootstrap/bootstrap-theme.css');
-//require('file-loader?name=css/[name].[ext]!../public/style/bootstrap/bootstrap.css');
+
 const Rx = require('rxjs/Rx');
 import {
   run

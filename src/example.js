@@ -2,7 +2,7 @@ import {
   option,
   h1,
   h2,
-  div
+  div, i
 } from '@cycle/dom';
 
 export default class Example {
@@ -24,12 +24,17 @@ export default class Example {
   }
 
   toHyperscript() {
+    console.log("entries", Object.entries(this.flexItemsStyle));
     return [
       h1(this.title),
       h2('Flex items style'),
-      div([JSON.stringify(this.flexItemsStyle, null, 2)]),
+      div('.key-value-container', Object.entries(this.flexItemsStyle).map(
+        ([key, value]) => div('.key-value', [ div('.key', key), div('.eq', [i('.icon-eq')]), div('.value', value)])
+      )),
       h2('Flex container style'),
-      div([JSON.stringify(this.flexContainerStyle, null, 2)])
+      div('.key-value-container', Object.entries(this.flexContainerStyle).map(
+        ([key, value]) => div('.key-value', [ div('.key', key), div('.eq', [i('.icon-eq')]), div('.value', value)])
+      ))
     ];
   }
 }
