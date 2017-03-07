@@ -4,7 +4,7 @@ import {
   fieldset,
   legend,
   input,
-  form, label, i
+  form, label
 } from '@cycle/dom';
 
 import {
@@ -20,7 +20,7 @@ import FlexItem from './flexitem';
 
 export default function view(state$) {
   return state$
-    .startWith(defaultState)
+    .do(state => console.log('view state is', state))
     .map(state =>
       div('.window', {}, [
         div('.controls', [
@@ -30,13 +30,13 @@ export default function view(state$) {
                 legend('legend'),
                 div('.form-group', [
                   label({attrs: {for: 'selecter'}}, 'Exempel'),
-                  select('#selecter.form-control', {}, Example.generateHyperScriptOptions(examples))
+                  select('#selecter.form-control', {}, Example.generateHyperScriptOptions(examples, state))
                 ]),
                 div('.form-group', [
                   label({attrs: {for: 'number-of-flex-items'}}, 'Antal flex items'),
                   input('#number-of-flex-items.form-control', {
                     attrs: {
-                      value: state.controlSettings.numberOfFlexItems,
+                      value: state.numberOfFlexItems,
                       type: 'range',
                       min: minNumberOfFlexItems,
                       max: maxNumberOfFlexItems
@@ -46,11 +46,11 @@ export default function view(state$) {
               ])
             ])
           ]),
-          div('.right', state.controlSettings.selectedExample.toHyperscript())
+          div('.right', examples.get(state.selectedExample).toHyperscript())
         ]),
-        div('.view', { style: state.controlSettings.selectedExample.flexContainerStyle }, FlexItem.generateFlexItems(
-          state.controlSettings.numberOfFlexItems,
-          state.controlSettings.selectedExample
+        div('.view', { style: examples.get(state.selectedExample).flexContainerStyle }, FlexItem.generateFlexItems(
+          state.numberOfFlexItems,
+          examples.get(state.selectedExample)
         ).map(flexItem => flexItem.generateHyperScript()))
       ])
     );

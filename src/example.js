@@ -12,19 +12,19 @@ export default class Example {
     this.flexContainerStyle = flexContainerStyle;
   }
 
-  static generateHyperScriptOptions(exampleMap) {
+  static generateHyperScriptOptions(exampleMap, state) {
     return Array.from(exampleMap.entries())
       .map(([v, example]) => {
         return option('.option', {
           attrs: {
-            value: v
+            value: v,
+            selected: state.selectedExample === v ? 'selected' : null
           }
         }, example.title);
       });
   }
 
   toHyperscript() {
-    console.log("entries", Object.entries(this.flexItemsStyle));
     return [
       h1(this.title),
       h2('Flex items style'),

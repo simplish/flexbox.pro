@@ -4,6 +4,8 @@ require('../public/style/style.css');
 require('../public/fontello/css/fontello.css');
 require('file-loader?name=[name].[ext]!../public/index.html');
 
+import storageDriver from '@cycle/storage';
+
 const Rx = require('rxjs/Rx');
 import {
   run
@@ -25,21 +27,12 @@ const Operations = {
     console.log(value, typeof value, examples, examples.get(value));
     const selectedValue = parseInt(value);
     return Object.assign({},
-      state, {
-        controlSettings: Object.assign({}, state.controlSettings,
-            { selectedExample: examples.get(selectedValue) }
-        )
-      }
+      state, { selectedExample: selectedValue }
     );
   },
   changeNumberOfFlexItems: value => state => {
-    return Object.assign({},
-      state, 
-      {
-        controlSettings: Object.assign({}, state.controlSettings,
-          { numberOfFlexItems: parseInt(value) }
-        )
-      }
+    return Object.assign({}, state, 
+      { numberOfFlexItems: parseInt(value) }
     );
   }
 };
@@ -72,16 +65,25 @@ function model(intents) {
     .scan((state, operation) => operation(state), defaultState);
 }
 
-function main({
-  DOM
-}) {
+function main({DOM, storage}) {
+  const state$ = storage.local
+    .getItem('state')
+    .map(storedValue => JSON.parse(storedValue))
+    .map(state => state === null ? defaultState : state);
+
   return {
-    DOM: view(model(intent(DOM)))
+    DOM: view(state$),
+    storage: model(intent(DOM))
+      .map(state => ({
+        key: 'state',
+        value: JSON.stringify(state)
+      }))
   };
 }
 
 const drivers = {
-  DOM: makeDOMDriver('#app')
+  DOM: makeDOMDriver('#app'),
+  storage: storageDriver
 };
 
 run(main, drivers);

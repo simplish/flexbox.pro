@@ -1,11 +1,13 @@
 import Example from './example';
 const examplesData = require('../examples.json');
 
-console.log('type of json examples', typeof examplesData, examplesData);
+if (!Array.isArray(examplesData.examples) || examplesData.examples.length < 1) {
+  throw new RangeError('Examples must be an array of a least length 1.');
+}
+
 const examples = new Map();
 
 for (const [index, e] of examplesData.examples.entries()) {
-  console.log("bases", examplesData.baseStyles.flexItemsStyle, examplesData.baseStyles.flexContainerStyle);
   examples.set(index, new Example(e.title, 
     Object.assign({}, examplesData.baseStyles.flexItemsStyle, e.flexItemsStyle), 
     Object.assign({}, examplesData.baseStyles.flexContainerStyle, e.flexContainerStyle)
@@ -15,12 +17,9 @@ for (const [index, e] of examplesData.examples.entries()) {
 const maxNumberOfFlexItems = 100;
 const minNumberOfFlexItems = 1;
 
-const defaultState = {
-  controlSettings: {
-    selectedExample: examples.get(0),
-    numberOfFlexItems: 5
-  },
-  controlsDescription: ''
+const defaultState = { //TODO add examples version...
+  selectedExample: 0,
+  numberOfFlexItems: 5
 };
 
 export {
