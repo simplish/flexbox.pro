@@ -1,4 +1,5 @@
 import Example from './example';
+import FlexItemSize from './flexitemsize';
 const examplesData = require('../examples.json');
 
 if (!Array.isArray(examplesData.examples) || examplesData.examples.length < 1) {
@@ -17,16 +18,22 @@ for (const [index, e] of examplesData.examples.entries()) {
 const maxNumberOfFlexItems = 100;
 const minNumberOfFlexItems = 1;
 
+const flexItemSizes = new Map();
+flexItemSizes.set(0, new FlexItemSize(100, 100));
+flexItemSizes.set(1, new FlexItemSize(200, 200));
+
 const defaultState = {
   version: VERSION,
   lastSelectedExample: null,
   selectedExample: 0,
-  numberOfFlexItems: 5
+  numberOfFlexItems: 5,
+  flexItemSize: 0
 };
 
 export {
   defaultState, 
   minNumberOfFlexItems,
   maxNumberOfFlexItems,
-  examples
+  examples,
+  flexItemSizes
 };

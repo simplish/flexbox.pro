@@ -4,11 +4,6 @@
   transition: all 2s;
 }
 
-.flex-item.dimension-100 {
-  width: 100px;
-  height: 100px;
-}
-
 .window {
   position: absolute;
   top: 0;

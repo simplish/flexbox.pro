@@ -8,11 +8,13 @@ import {
 } from '@cycle/dom';
 
 import {
-  defaultState,
   minNumberOfFlexItems,
   maxNumberOfFlexItems,
-  examples
+  examples,
+  flexItemSizes
 } from './model';
+
+import FlexItemSize from './flexitemsize';
 
 import Example from './example';
 import FlexItem from './flexitem';
@@ -32,7 +34,7 @@ export default function view(state$) {
                   label({attrs: {for: 'selecter'}}, 'Exempel'),
                   div('.mult', [
                     select('#selecter.form-control', {}, Example.generateHyperScriptOptions(examples, state)),
-                    button('#last-example-switch.btn.btn-default', {attrs: {type: 'button', disabled: state.lastSelectedExample === null ? "disabled" : null}}, 'Last')
+                    button('#last-example-switch.btn.btn-default', {attrs: {type: 'button', disabled: state.lastSelectedExample === null ? 'disabled' : null}}, 'Last')
                   ])
                 ]),
                 div('.form-group', [
@@ -45,6 +47,10 @@ export default function view(state$) {
                       max: maxNumberOfFlexItems
                     }
                   })
+                ]),
+                div('.form-group', [
+                  label({attrs: {for: 'flex-item-size-select'}}, 'Flex item size'),
+                  select('#flex-item-size-select.form-control', FlexItemSize.generateHyperScriptOptions(flexItemSizes, state))
                 ])
               ])
             ])
@@ -53,7 +59,8 @@ export default function view(state$) {
         ]),
         div('.view', { style: examples.get(state.selectedExample).flexContainerStyle }, FlexItem.generateFlexItems(
           state.numberOfFlexItems,
-          examples.get(state.selectedExample)
+          examples.get(state.selectedExample),
+          flexItemSizes.get(state.flexItemSize)
         ).map(flexItem => flexItem.generateHyperScript()))
       ])
     );

@@ -45,6 +45,11 @@ const Operations = {
     return Object.assign({}, state, 
       { numberOfFlexItems: parseInt(value) }
     );
+  },
+  changeSizeOfFlexItems: value => state => {
+    return Object.assign({}, state, 
+      { flexItemSize: parseInt(value) }
+    );
   }
 };
 
@@ -58,7 +63,11 @@ function intent(DOM) {
       .map(evt => {
         return evt.target.value;
       }),
-    lastExampleSwitchClicked: DOM.select('#last-example-switch').events('click')
+    lastExampleSwitchClicked: DOM.select('#last-example-switch').events('click'),
+    flexItemSizeChanged: DOM.select('#flex-item-size-select').events('change')
+      .map(evt => {
+        return evt.target.value;
+      })
   };
 }
 
@@ -73,12 +82,17 @@ function model(intents) {
       return Operations.changeNumberOfFlexItems(value);
     });
 
-  const switchToLastExampleOperations$ = intents.lastExampleSwitchClicked
+  const changeSizeOfFlexItemsOperations$ = intents.flexItemSizeChanged
     .map(value => {
-        return Operations.switchToLastExample();
-      });
+      return Operations.changeSizeOfFlexItems(value);
+    });
 
-  return Rx.Observable.merge(changeOperations$, changeNumberOfFlexItemsOperations$, switchToLastExampleOperations$)
+  const switchToLastExampleOperations$ = intents.lastExampleSwitchClicked
+    .map(() => {
+      return Operations.switchToLastExample();
+    });
+
+  return Rx.Observable.merge(changeOperations$, changeNumberOfFlexItemsOperations$, switchToLastExampleOperations$, changeSizeOfFlexItemsOperations$)
     .scan((state, operation) => operation(state), defaultState);
 }
 
