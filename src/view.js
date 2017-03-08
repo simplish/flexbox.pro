@@ -4,7 +4,7 @@ import {
   fieldset,
   legend,
   input,
-  form, label
+  form, label, button
 } from '@cycle/dom';
 
 import {
@@ -30,7 +30,10 @@ export default function view(state$) {
                 legend('legend'),
                 div('.form-group', [
                   label({attrs: {for: 'selecter'}}, 'Exempel'),
-                  select('#selecter.form-control', {}, Example.generateHyperScriptOptions(examples, state))
+                  div('.mult', [
+                    select('#selecter.form-control', {}, Example.generateHyperScriptOptions(examples, state)),
+                    button('#last-example-switch.btn.btn-default', {attrs: {type: 'button', disabled: state.lastSelectedExample === null ? "disabled" : null}}, 'Last')
+                  ])
                 ]),
                 div('.form-group', [
                   label({attrs: {for: 'number-of-flex-items'}}, 'Antal flex items'),

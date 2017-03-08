@@ -1,4 +1,4 @@
-require('../public/style/bootstrap/bootstrap-theme.css');
+//require('../public/style/bootstrap/bootstrap-theme.css');
 require('../public/style/bootstrap/bootstrap.css');
 require('../public/style/style.css');
 require('../public/fontello/css/fontello.css');
@@ -27,7 +27,18 @@ const Operations = {
     console.log(value, typeof value, examples, examples.get(value));
     const selectedValue = parseInt(value);
     return Object.assign({},
-      state, { selectedExample: selectedValue }
+      state, { 
+        selectedExample: selectedValue,
+        lastSelectedExample: state.selectedExample
+      }
+    );
+  },
+  switchToLastExample: () => state => {
+    return Object.assign({},
+      state, { 
+        selectedExample: state.lastSelectedExample,
+        lastSelectedExample: state.selectedExample
+      }
     );
   },
   changeNumberOfFlexItems: value => state => {
@@ -46,7 +57,8 @@ function intent(DOM) {
     numberOfFlexItemsChanged: DOM.select('#number-of-flex-items').events('change')
       .map(evt => {
         return evt.target.value;
-      })
+      }),
+    lastExampleSwitchClicked: DOM.select('#last-example-switch').events('click')
   };
 }
 
@@ -61,7 +73,12 @@ function model(intents) {
       return Operations.changeNumberOfFlexItems(value);
     });
 
-  return Rx.Observable.merge(changeOperations$, changeNumberOfFlexItemsOperations$)
+  const switchToLastExampleOperations$ = intents.lastExampleSwitchClicked
+    .map(value => {
+        return Operations.switchToLastExample();
+      });
+
+  return Rx.Observable.merge(changeOperations$, changeNumberOfFlexItemsOperations$, switchToLastExampleOperations$)
     .scan((state, operation) => operation(state), defaultState);
 }
 
@@ -69,7 +86,7 @@ function main({DOM, storage}) {
   const state$ = storage.local
     .getItem('state')
     .map(storedValue => JSON.parse(storedValue))
-    .map(state => state === null ? defaultState : state);
+    .map(state => state === null || state.version != VERSION ? defaultState : state);
 
   return {
     DOM: view(state$),

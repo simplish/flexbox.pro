@@ -17,7 +17,9 @@ for (const [index, e] of examplesData.examples.entries()) {
 const maxNumberOfFlexItems = 100;
 const minNumberOfFlexItems = 1;
 
-const defaultState = { //TODO add examples version...
+const defaultState = {
+  version: VERSION,
+  lastSelectedExample: null,
   selectedExample: 0,
   numberOfFlexItems: 5
 };

@@ -80,3 +80,15 @@
 .key-value .value {
   flex-grow: 1;
 }
+
+.form-group > .mult {
+  display: flex;
+}
+
+.form-group > .mult > * {
+  margin-left: 5px;
+}
+
+.form-group > .mult > *:first-child {
+  margin-left: 0;
+}

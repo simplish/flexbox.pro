@@ -43,7 +43,8 @@ module.exports = {
             sourceMap: true
         }),
         new webpack.DefinePlugin({
-            'proccess.env': {NODE_ENV: JSON.stringify(nodeEnv)}
+            'proccess.env': {NODE_ENV: JSON.stringify(nodeEnv)},
+            'VERSION': JSON.stringify(require("./package.json").version)
         })
     ],
     devServer: {
