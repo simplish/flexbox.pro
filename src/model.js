@@ -24,7 +24,8 @@ flexItemSizes.set(1, new FlexItemSize(200, 200));
 
 const defaultState = {
   version: VERSION,
-  lastSelectedExample: null,
+  leftStates: [],
+  rightStates: [],
   selectedExample: 0,
   numberOfFlexItems: 5,
   flexItemSize: 0

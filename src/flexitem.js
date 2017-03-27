@@ -12,7 +12,6 @@ export default class FlexItem {
   }
 
   generateHyperScript() {
-    console.log(this.size);
     return div('.flex-item', {
       style: Object.assign({}, this.style, {width: this.size.width + 'px', height: this.size.height + 'px'})
     }, [this.content]);

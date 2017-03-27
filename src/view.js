@@ -22,7 +22,6 @@ import FlexItem from './flexitem';
 
 export default function view(state$) {
   return state$
-    .do(state => console.log('view state is', state))
     .map(state =>
       div('.window', {}, [
         div('.controls', [
@@ -30,12 +29,13 @@ export default function view(state$) {
             form([
               fieldset([
                 legend('legend'),
+                div('.mult', [
+                  button('#prev-btn.btn.btn-default.icon-left', {attrs: {type: 'button', accesskey: 'o', title: 'Previous state [o]', disabled: state.leftStates.length <= 0 ? 'disabled' : null}}, []),
+                  button('#next-btn.btn.btn-default.icon-right', {attrs: {type: 'button', accesskey: 'p', title: 'Next state [p]', disabled: state.rightStates.length <= 0 ? 'disabled' : null}}, [])
+                ]),
                 div('.form-group', [
                   label({attrs: {for: 'selecter'}}, 'Exempel'),
-                  div('.mult', [
-                    select('#selecter.form-control', {}, Example.generateHyperScriptOptions(examples, state)),
-                    button('#last-example-switch.btn.btn-default', {attrs: {type: 'button', disabled: state.lastSelectedExample === null ? 'disabled' : null}}, 'Last')
-                  ])
+                  select('#selecter.form-control', {}, Example.generateHyperScriptOptions(examples, state))
                 ]),
                 div('.form-group', [
                   label({attrs: {for: 'number-of-flex-items'}}, 'Antal flex items'),

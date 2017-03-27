@@ -10,6 +10,9 @@
       "title": "Test 1",
       "flexItemsStyle": {
         "background-color": "yellow"
+      },
+      "flexContainerStyle": {
+        "flex-direction": "row"
       }
     },
     {
@@ -19,6 +22,15 @@
       },
       "flexContainerStyle": {
         "flex-direction": "row-reverse"
+      }
+    },
+    {
+      "title": "Direction: Column",
+      "flexItemsStyle": {
+        "background-color": "blue"
+      },
+      "flexContainerStyle": {
+        "flex-direction": "column"
       }
     }
   ]

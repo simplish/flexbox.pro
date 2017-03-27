@@ -23,7 +23,7 @@
 }
 
 .controls>div {
-  padding: 20px;
+  padding: 8px 20px;
   margin-left: 2px;
 }
 
@@ -35,6 +35,7 @@
   flex-grow: 1;
   flex-basis: 0;
   background-color: #F6F8EE;
+  overflow: scroll;
 }
 
 .right {
@@ -42,6 +43,7 @@
   flex-basis: 0;
   box-shadow: -2px 0px #eee;
   background-color: #F0F0D8;
+  overflow: scroll;
 }
 
 .view {
@@ -52,6 +54,7 @@
   display: flex;
   transition: all 2s;
   box-shadow: 0px -2px #eee;
+  overflow: scroll;
   padding: 20px;
 }
 
@@ -76,14 +79,22 @@
   flex-grow: 1;
 }
 
-.form-group > .mult {
+.mult {
   display: flex;
+  justify-content: space-between;
 }
 
-.form-group > .mult > * {
+.mult > * {
   margin-left: 5px;
 }
 
-.form-group > .mult > *:first-child {
+.mult > *:first-child {
   margin-left: 0;
+}
+
+.bar {
+  margin-bottom: 15px;
+  padding: 8px;
+  border: 1px solid black;
+  border-radius: 4px;
 }

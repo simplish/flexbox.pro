@@ -15,40 +15,79 @@ import {
 } from '@cycle/dom';
 
 import {
-  defaultState,
-  examples
+  defaultState
 } from './model';
 
 import view from './view';
 
 
+function getNewLeftState(state) {
+  const newLeftStates = Array.from(state.leftStates);
+  newLeftStates.push(resetStateQueues(state));
+  return newLeftStates;
+}
+
+function resetStateQueues(state) {
+  return Object.assign({}, state, {
+    leftStates: null,
+    rightStates: null
+  });
+}
+
 const Operations = {
   change: value => state => {
-    console.log(value, typeof value, examples, examples.get(value));
     const selectedValue = parseInt(value);
     return Object.assign({},
       state, { 
         selectedExample: selectedValue,
-        lastSelectedExample: state.selectedExample
+        lastSelectedExample: state.selectedExample,
+        leftStates: getNewLeftState(state),
+        rightStates: []
+      }
+    );
+  },  
+  switchToPrevState: () => state => {
+    const newLeftStates = Array.from(state.leftStates);
+    const newRightState = Array.from(state.rightStates);
+    const newState = newLeftStates.pop();
+    newRightState.push(resetStateQueues(state));
+
+    return Object.assign({},
+      newState, { 
+        leftStates: newLeftStates,
+        rightStates: newRightState
       }
     );
   },
-  switchToLastExample: () => state => {
+  switchToNextState: () => state => {
+    const newLeftStates = Array.from(state.leftStates);
+    const newRightStates = Array.from(state.rightStates);
+    const newState = newRightStates.pop();
+    newLeftStates.push(resetStateQueues(state));
+
     return Object.assign({},
-      state, { 
-        selectedExample: state.lastSelectedExample,
-        lastSelectedExample: state.selectedExample
+      newState, { 
+        leftStates: newLeftStates,
+        rightStates: newRightStates
       }
     );
   },
   changeNumberOfFlexItems: value => state => {
     return Object.assign({}, state, 
-      { numberOfFlexItems: parseInt(value) }
+      { 
+        numberOfFlexItems: parseInt(value),
+        leftStates: getNewLeftState(state),
+        rightStates: []
+      }
     );
   },
   changeSizeOfFlexItems: value => state => {
     return Object.assign({}, state, 
-      { flexItemSize: parseInt(value) }
+      { 
+        flexItemSize: parseInt(value),
+        leftStates: getNewLeftState(state),
+        rightStates: []
+      }
     );
   }
 };
@@ -63,7 +102,8 @@ function intent(DOM) {
       .map(evt => {
         return evt.target.value;
       }),
-    lastExampleSwitchClicked: DOM.select('#last-example-switch').events('click'),
+    prevStateClicked: DOM.select('#prev-btn').events('click'),
+    nextStateClicked: DOM.select('#next-btn').events('click'),
     flexItemSizeChanged: DOM.select('#flex-item-size-select').events('change')
       .map(evt => {
         return evt.target.value;
@@ -87,12 +127,17 @@ function model(intents) {
       return Operations.changeSizeOfFlexItems(value);
     });
 
-  const switchToLastExampleOperations$ = intents.lastExampleSwitchClicked
+  const switchToPrevStateOperations$ = intents.prevStateClicked
     .map(() => {
-      return Operations.switchToLastExample();
+      return Operations.switchToPrevState();
     });
 
-  return Rx.Observable.merge(changeOperations$, changeNumberOfFlexItemsOperations$, switchToLastExampleOperations$, changeSizeOfFlexItemsOperations$)
+  const switchToNextStateOperations$ = intents.nextStateClicked
+    .map(() => {
+      return Operations.switchToNextState();
+    });
+
+  return Rx.Observable.merge(changeOperations$, changeNumberOfFlexItemsOperations$, switchToPrevStateOperations$, switchToNextStateOperations$, changeSizeOfFlexItemsOperations$)
     .scan((state, operation) => operation(state), defaultState);
 }
 
