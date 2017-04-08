@@ -13,7 +13,12 @@ export default class FlexItem {
 
   generateHyperScript() {
     return div('.flex-item', {
-      style: Object.assign({}, this.style, {width: this.size.width + 'px', height: this.size.height + 'px'})
+      style: Object.assign({}, this.style, {
+        width: this.size.width + 'px',
+        height: this.size.height + 'px',
+        'font-size': this.size.height / 2 + 'px',
+        lineHeight: this.size.height + 'px',
+      })
     }, [this.content]);
   }
 

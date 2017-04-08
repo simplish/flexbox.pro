@@ -28,17 +28,17 @@ export default function view(state$) {
           div('.left', {}, [
             form([
               fieldset([
-                legend('legend'),
+                legend('Flex demo configuration'),
                 div('.mult', [
                   button('#prev-btn.btn.btn-default.icon-left', {attrs: {type: 'button', accesskey: 'o', title: 'Previous state [o]', disabled: state.leftStates.length <= 0 ? 'disabled' : null}}, []),
                   button('#next-btn.btn.btn-default.icon-right', {attrs: {type: 'button', accesskey: 'p', title: 'Next state [p]', disabled: state.rightStates.length <= 0 ? 'disabled' : null}}, [])
                 ]),
                 div('.form-group', [
-                  label({attrs: {for: 'selecter'}}, 'Exempel'),
+                  label({attrs: {for: 'selecter'}}, 'Example'),
                   select('#selecter.form-control', {}, Example.generateHyperScriptOptions(examples, state))
                 ]),
                 div('.form-group', [
-                  label({attrs: {for: 'number-of-flex-items'}}, 'Antal flex items'),
+                  label({attrs: {for: 'number-of-flex-items'}}, 'Number of flex items'),
                   input('#number-of-flex-items.form-control', {
                     attrs: {
                       value: state.numberOfFlexItems,

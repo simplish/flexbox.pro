@@ -1,7 +1,8 @@
 .flex-item {
-  background-color: red;
   border: 1px solid black;
-  transition: all 2s;
+  transition: all 0.5s;
+  text-align: center;
+  border-radius: 8px;
 }
 
 .window {
@@ -52,7 +53,7 @@
   border-top: 0 solid #555;
   background-color: #EEECB9;
   display: flex;
-  transition: all 2s;
+  transition: all 0.5s;
   box-shadow: 0px -2px #eee;
   overflow: scroll;
   padding: 20px;
@@ -61,6 +62,7 @@
 .key-value-container {
   display: flex;
   flex-direction: column;
+  max-width: 500px;
 }
 
 .key-value {
@@ -72,11 +74,16 @@
 }
 
 .key-value .key {
-  flex-grow: 1;
+  flex-basis: 200px;
 }
 
 .key-value .value {
-  flex-grow: 1;
+  flex-basis: 200px;
+}
+
+.key-value .value .default-value {
+  margin-left: 10px;
+  color: goldenrod;
 }
 
 .mult {
@@ -97,4 +104,8 @@
   padding: 8px;
   border: 1px solid black;
   border-radius: 4px;
+}
+
+.form-group {
+  margin: 15px 0;
 }

@@ -12,6 +12,18 @@ export default class Example {
     this.flexContainerStyle = flexContainerStyle;
   }
 
+  static getStyleDeclarationValue(declaration) {
+    return declaration[1][0];
+  }
+
+  static getStyleDeclarationProperty(declaration) {
+    return declaration[0];
+  }
+
+  static getStyleDeclarationProperties(declaration) {
+    return declaration[1][1] || {};
+  }
+
   static generateHyperScriptOptions(exampleMap, state) {
     return Array.from(exampleMap.entries())
       .map(([v, example]) => {
@@ -29,11 +41,25 @@ export default class Example {
       h1(this.title),
       h2('Flex items style'),
       div('.key-value-container', Object.entries(this.flexItemsStyle).map(
-        ([key, value]) => div('.key-value', [ div('.key', key), div('.eq', [i('.icon-eq')]), div('.value', value)])
+        (declaration) => div('.key-value', [ 
+          div('.key', Example.getStyleDeclarationProperty(declaration)), 
+          div('.eq', [i('.icon-eq')]), 
+          div('.value', [
+            Example.getStyleDeclarationValue(declaration), 
+            Example.getStyleDeclarationProperties(declaration).isDefault ? i('.icon-star-filled.default-value') : undefined
+          ])
+        ])
       )),
       h2('Flex container style'),
       div('.key-value-container', Object.entries(this.flexContainerStyle).map(
-        ([key, value]) => div('.key-value', [ div('.key', key), div('.eq', [i('.icon-eq')]), div('.value', value)])
+        (declaration) => div('.key-value', [ 
+          div('.key', Example.getStyleDeclarationProperty(declaration)), 
+          div('.eq', [i('.icon-eq')]), 
+          div('.value', [
+            Example.getStyleDeclarationValue(declaration), 
+            Example.getStyleDeclarationProperties(declaration).isDefault ? i('.icon-star-filled.default-value') : undefined
+          ])
+        ])
       ))
     ];
   }
