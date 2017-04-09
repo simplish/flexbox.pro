@@ -45,7 +45,7 @@ const Operations = {
         rightStates: []
       }
     );
-  },  
+  },
   switchToPrevState: () => state => {
     const newLeftStates = Array.from(state.leftStates);
     const newRightState = Array.from(state.rightStates);

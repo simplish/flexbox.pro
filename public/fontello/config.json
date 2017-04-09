@@ -35,6 +35,12 @@
       "css": "flow-cross",
       "code": 59396,
       "src": "typicons"
+    },
+    {
+      "uid": "85fda3129wk4amvn25wrq843sbj3yzl0",
+      "css": "info",
+      "code": 59397,
+      "src": "typicons"
     }
   ]
 }

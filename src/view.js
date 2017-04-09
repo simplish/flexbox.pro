@@ -57,7 +57,7 @@ export default function view(state$) {
           ]),
           div('.right', examples.get(state.selectedExample).toHyperscript())
         ]),
-        div('.view', { style: examples.get(state.selectedExample).flexContainerStyle }, FlexItem.generateFlexItems(
+        div('.view', { style: examples.get(state.selectedExample).getContainerStyleObj() }, FlexItem.generateFlexItems(
           state.numberOfFlexItems,
           examples.get(state.selectedExample),
           flexItemSizes.get(state.flexItemSize)

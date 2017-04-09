@@ -16,6 +16,20 @@
       }
     },
     {
+      "title": "Equal space between items",
+      "flexContainerStyle": {
+        "flex-direction": ["row", {"isDefault": true}],
+        "justify-content": ["space-between"]
+      }
+    },
+    {
+      "title": "Equal space around items",
+      "flexContainerStyle": {
+        "flex-direction": ["row", {"isDefault": true}],
+        "justify-content": ["space-around", {"moreInfo": "https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content"}]
+      }
+    },
+    {
       "title": "Test 2",
       "flexItemsStyle": {
         "background-color": ["green"]
