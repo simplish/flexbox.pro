@@ -64,7 +64,7 @@ export default class Example {
           div('.value', [
             Example.getStyleDeclarationValue(declaration), 
             Example.getStyleDeclarationProperties(declaration).isDefault ? i('.icon-star-filled.default-value') : undefined,
-            Example.getStyleDeclarationProperties(declaration).moreInfo ? a('.ididi', { 
+            Example.getStyleDeclarationProperties(declaration).moreInfo ? a({ 
               attrs: {
                 href: Example.getStyleDeclarationProperties(declaration).moreInfo,
                 target: '_blank'

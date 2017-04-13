@@ -89,6 +89,12 @@ const Operations = {
         rightStates: []
       }
     );
+  },
+  startStateOperation: value => state => {
+    if (state !== undefined) {
+      throw new Error('This action should be called as a initilizer when the start value is undefined.');
+    }
+    return value;
   }
 };
 
@@ -111,7 +117,7 @@ function intent(DOM) {
   };
 }
 
-function model(intents) {
+function model(intents, startState$) {
   const changeOperations$ = intents.changed
     .map(value => {
       return Operations.change(value);
@@ -137,19 +143,29 @@ function model(intents) {
       return Operations.switchToNextState();
     });
 
-  return Rx.Observable.merge(changeOperations$, changeNumberOfFlexItemsOperations$, switchToPrevStateOperations$, switchToNextStateOperations$, changeSizeOfFlexItemsOperations$)
-    .scan((state, operation) => operation(state), defaultState);
+  const startStateOperation$ = startState$
+    .map(state => Operations.startStateOperation(state));
+
+  return Rx.Observable
+    .from(startStateOperation$)
+    .merge(changeOperations$, 
+      changeNumberOfFlexItemsOperations$, 
+      switchToPrevStateOperations$, 
+      switchToNextStateOperations$, 
+      changeSizeOfFlexItemsOperations$
+    )
+    .scan((state, operation) => operation(state), undefined);
 }
 
 function main({DOM, storage}) {
   const state$ = storage.local
     .getItem('state')
     .map(storedValue => JSON.parse(storedValue))
-    .map(state => state === null || state.version != VERSION ? defaultState : state);
+    .map(state => (state === null || state.version != VERSION) ? defaultState : state);
 
   return {
     DOM: view(state$),
-    storage: model(intent(DOM))
+    storage: model(intent(DOM), state$.first())
       .map(state => ({
         key: 'state',
         value: JSON.stringify(state)
