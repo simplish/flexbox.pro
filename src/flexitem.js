@@ -20,15 +20,14 @@ export default class FlexItem {
           height: this.size.height + 'px',
           'font-size': this.size.height / 2 + 'px',
           lineHeight: this.size.height + 'px',
-        })
+        }
+      )
     }, [this.content]);
   }
 
   static generateFlexItems(numberOfFlexItems, example, size) {
-    const flexItems = [];
-    for (let index of util.positiveNumbers(numberOfFlexItems)) {
-      flexItems.push(new FlexItem(index, example.getItemStyleObj(), size));
-    }
-    return flexItems;
+    return [...Array(numberOfFlexItems)].map((curr, index, arr) => 
+      new FlexItem(index + 1, example.getItemStyleObj(index, arr.length), size)
+    );
   }
 }

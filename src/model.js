@@ -21,6 +21,7 @@ const minNumberOfFlexItems = 1;
 const flexItemSizes = new Map();
 flexItemSizes.set(0, new FlexItemSize(100, 100));
 flexItemSizes.set(1, new FlexItemSize(200, 200));
+flexItemSizes.set(1, new FlexItemSize(250, 250));
 
 const defaultState = {
   version: VERSION,

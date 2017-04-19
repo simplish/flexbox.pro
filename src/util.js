@@ -18,4 +18,15 @@ export default class Util {
     }
     return true;
   }
+
+  static getRandomInInterval(min, max, seed = 0) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Util.random(seed) * (max - min)) + min;
+  }
+
+  static random(n) {
+    const x = Math.sin(n) * 10000;
+    return x - Math.floor(x);
+  }
 }

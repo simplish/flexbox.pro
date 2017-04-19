@@ -20,7 +20,7 @@
 
 .controls {
   flex-grow: 1;
-  flex-basis: 0;
+  flex-basis: 40px;
   align-items: stretch;
   display: flex;
 }
@@ -44,7 +44,7 @@
 .right {
   flex-grow: 1;
   flex-basis: 0;
-  box-shadow: -2px 0px #eee;
+  box-shadow: -2px 0px #555;
   background-color: #F0F0D8;
   overflow: scroll;
 }
@@ -56,7 +56,7 @@
   background-color: #EEECB9;
   display: flex;
   transition: all 0.5s;
-  box-shadow: 0px -2px #eee;
+  box-shadow: 0px -2px #555;
   overflow: scroll;
   padding: 20px;
 }

@@ -4,6 +4,7 @@ import {
   h2,
   div, i, a
 } from '@cycle/dom';
+import util from './util';
 
 export default class Example {
   constructor(title = '', flexItemsStyle = {}, flexContainerStyle = {}) {
@@ -46,14 +47,18 @@ export default class Example {
     );
   }
 
-  getItemStyleObj() {
+  getItemStyleObj(itemIndex = 0, totalNumberOfItems = 0) {
     return Object.entries(this.flexItemsStyle).reduce(
       (styleObj, [property, value]) => {
-        styleObj[property] = value[0];
+        styleObj[property] = this.replaceRandom(value[0], itemIndex, totalNumberOfItems);
         return styleObj;
       },
       {}
     );
+  }
+
+  replaceRandom(value, index, upperLimit) {
+    return value.replace(/\{random\}/g, util.getRandomInInterval(0, upperLimit, upperLimit + index));
   }
 
   renderStyleObject(styleObject, label) {

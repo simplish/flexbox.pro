@@ -46,6 +46,12 @@
       "flexContainerStyle": {
         "flex-direction": ["column"]
       }
+    },
+    {
+      "title": "Items visible order",
+      "flexItemsStyle": {
+        "order": ["{random}"]
+      }
     }
   ]
 }
