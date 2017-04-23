@@ -28,14 +28,17 @@ export default function view(state$) {
           div('.left', {}, [
             form([
               fieldset([
-                legend('Flex demo configuration'),
+                legend('.heading-legend', 'Flex demo configuration'),
                 div('.mult', [
-                  button('#prev-btn.btn.btn-default.icon-left', {attrs: {type: 'button', accesskey: 'o', title: 'Previous state [o]', disabled: state.leftStates.length <= 0 ? 'disabled' : null}}, []),
-                  button('#next-btn.btn.btn-default.icon-right', {attrs: {type: 'button', accesskey: 'p', title: 'Next state [p]', disabled: state.rightStates.length <= 0 ? 'disabled' : null}}, [])
+                  button('#prev-btn.btn.btn-default.icon-left', {attrs: {type: 'button', accesskey: 'o', title: 'Previous state [o]', disabled: state.leftStates.length <= 0 ? 'disabled' : null}}),
+                  button('#next-btn.btn.btn-default.icon-right', {attrs: {type: 'button', accesskey: 'p', title: 'Next state [p]', disabled: state.rightStates.length <= 0 ? 'disabled' : null}})
                 ]),
                 div('.form-group', [
                   label({attrs: {for: 'selecter'}}, 'Example'),
-                  select('#selecter.form-control', {}, Example.generateHyperScriptOptions(examples, state))
+                  div('.mult', [
+                    select('#selecter.form-control', {attrs: Example.getExampleSelectAttributes(state.showMultipleExamples, examples)}, Example.generateHyperScriptOptions(examples, state)),
+                    button('#show-all-examples-btn.btn.btn-default.icon-th-list', {attrs: {type: 'button', accesskey: 'a', title: 'Show multiple examples'}})
+                  ])
                 ]),
                 div('.form-group', [
                   label({attrs: {for: 'number-of-flex-items'}}, 'Number of flex items'),

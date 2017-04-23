@@ -6,52 +6,57 @@
     }
   },
   "examples": [
-    {
-      "title": "Test 1",
-      "flexItemsStyle": {
-        "background-color": ["yellow"]
-      },
-      "flexContainerStyle": {
-        "flex-direction": ["row", {"isDefault": true}]
-      }
-    },
-    {
-      "title": "Equal space between items",
-      "flexContainerStyle": {
-        "flex-direction": ["row", {"isDefault": true}],
-        "justify-content": ["space-between"]
-      }
-    },
-    {
-      "title": "Equal space around items",
-      "flexContainerStyle": {
-        "flex-direction": ["row", {"isDefault": true}],
-        "justify-content": ["space-around", {"moreInfo": "https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content"}]
-      }
-    },
-    {
-      "title": "Test 2",
-      "flexItemsStyle": {
-        "background-color": ["green"]
-      },
-      "flexContainerStyle": {
-        "flex-direction": ["row-reverse"]
-      }
-    },
-    {
-      "title": "Direction: Column",
-      "flexItemsStyle": {
-        "background-color": ["blue"]
-      },
-      "flexContainerStyle": {
-        "flex-direction": ["column"]
-      }
-    },
-    {
-      "title": "Items visible order",
-      "flexItemsStyle": {
-        "order": ["{random}"]
-      }
+    { 
+      "group": "basic",
+      "examplesInGroup": [
+        {
+          "title": "Test 1",
+          "flexItemsStyle": {
+            "background-color": ["yellow"]
+          },
+          "flexContainerStyle": {
+            "flex-direction": ["row", {"isDefault": true}]
+          }
+        },
+        {
+          "title": "Equal space between items",
+          "flexContainerStyle": {
+            "flex-direction": ["row", {"isDefault": true}],
+            "justify-content": ["space-between"]
+          }
+        },
+        {
+          "title": "Equal space around items",
+          "flexContainerStyle": {
+            "flex-direction": ["row", {"isDefault": true}],
+            "justify-content": ["space-around", {"moreInfo": "https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content"}]
+          }
+        },
+        {
+          "title": "Test 2",
+          "flexItemsStyle": {
+            "background-color": ["green"]
+          },
+          "flexContainerStyle": {
+            "flex-direction": ["row-reverse"]
+          }
+        },
+        {
+          "title": "Direction: Column",
+          "flexItemsStyle": {
+            "background-color": ["blue"]
+          },
+          "flexContainerStyle": {
+            "flex-direction": ["column"]
+          }
+        },
+        {
+          "title": "Items visible order",
+          "flexItemsStyle": {
+            "order": ["{random}"]
+          }
+        }
+      ]
     }
   ]
 }

@@ -38,7 +38,7 @@ const Operations = {
   change: value => state => {
     const selectedValue = parseInt(value);
     return Object.assign({},
-      state, { 
+      state, {
         selectedExample: selectedValue,
         lastSelectedExample: state.selectedExample,
         leftStates: getNewLeftState(state),
@@ -90,6 +90,13 @@ const Operations = {
       }
     );
   },
+  showMultipleExamples: value => state => {
+    return Object.assign({}, state, 
+      { 
+        showMultipleExamples: !state.showMultipleExamples,
+      }
+    );
+  },
   startStateOperation: value => state => {
     if (state !== undefined) {
       throw new Error('This action should be called as a initilizer when the start value is undefined.');
@@ -110,6 +117,7 @@ function intent(DOM) {
       }),
     prevStateClicked: DOM.select('#prev-btn').events('click'),
     nextStateClicked: DOM.select('#next-btn').events('click'),
+    multipleExamplesClicked: DOM.select('#show-all-examples-btn').events('click'),
     flexItemSizeChanged: DOM.select('#flex-item-size-select').events('change')
       .map(evt => {
         return evt.target.value;
@@ -143,6 +151,11 @@ function model(intents, startState$) {
       return Operations.switchToNextState();
     });
 
+  const showMultipleExamplesOperations$ = intents.multipleExamplesClicked
+    .map(() => {
+      return Operations.showMultipleExamples();
+    });
+
   const startStateOperation$ = startState$
     .map(state => Operations.startStateOperation(state));
 
@@ -152,7 +165,8 @@ function model(intents, startState$) {
       changeNumberOfFlexItemsOperations$, 
       switchToPrevStateOperations$, 
       switchToNextStateOperations$, 
-      changeSizeOfFlexItemsOperations$
+      changeSizeOfFlexItemsOperations$,
+      showMultipleExamplesOperations$
     )
     .scan((state, operation) => operation(state), undefined);
 }
