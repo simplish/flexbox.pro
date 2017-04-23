@@ -81,6 +81,13 @@ const Operations = {
       }
     );
   },
+  changeDirection: value => state => {
+    return Object.assign({}, state, 
+      { 
+        direction: value,
+      }
+    );
+  },
   changeSizeOfFlexItems: value => state => {
     return Object.assign({}, state, 
       { 
@@ -115,6 +122,10 @@ function intent(DOM) {
       .map(evt => {
         return evt.target.value;
       }),
+    directionChanged: DOM.select('.direction-radio').events('change')
+    .map(evt => {
+      return evt.target.value;
+    }),
     prevStateClicked: DOM.select('#prev-btn').events('click'),
     nextStateClicked: DOM.select('#next-btn').events('click'),
     multipleExamplesClicked: DOM.select('#show-all-examples-btn').events('click'),
@@ -139,6 +150,11 @@ function model(intents, startState$) {
   const changeSizeOfFlexItemsOperations$ = intents.flexItemSizeChanged
     .map(value => {
       return Operations.changeSizeOfFlexItems(value);
+    });
+  
+  const changeDirectionOperations$ = intents.directionChanged
+    .map(value => {
+      return Operations.changeDirection(value);
     });
 
   const switchToPrevStateOperations$ = intents.prevStateClicked
@@ -166,7 +182,8 @@ function model(intents, startState$) {
       switchToPrevStateOperations$, 
       switchToNextStateOperations$, 
       changeSizeOfFlexItemsOperations$,
-      showMultipleExamplesOperations$
+      showMultipleExamplesOperations$,
+      changeDirectionOperations$
     )
     .scan((state, operation) => operation(state), undefined);
 }

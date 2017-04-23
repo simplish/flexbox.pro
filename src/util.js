@@ -29,4 +29,8 @@ export default class Util {
     const x = Math.sin(n) * 10000;
     return x - Math.floor(x);
   }
+
+  static toUpperCaseFirst(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
 }

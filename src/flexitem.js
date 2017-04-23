@@ -2,8 +2,6 @@ import {
   div
 } from '@cycle/dom';
 
-import util from './util';
-
 export default class FlexItem {
   constructor(content = '', style = {}, size) {
     this.content = content;

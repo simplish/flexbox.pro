@@ -17,6 +17,14 @@ export default class Example {
     return declaration[1][0];
   }
 
+  static setStyleDeclarationValue(declaration, value) {
+    const n = declaration[1].slice();
+    n[0] = value;
+    declaration[1] = n;
+
+    return declaration;
+  }
+
   static getStyleDeclarationProperty(declaration) {
     return declaration[0];
   }
@@ -42,9 +50,8 @@ export default class Example {
     return Array.from(exampleGroups.entries())
       .map(([groupName, examples]) => {
         return optgroup('.group', { attrs: {
-            label: groupName
-          }
-        }, examples);
+          label: groupName
+        }}, examples);
       });
   }
 
@@ -70,13 +77,26 @@ export default class Example {
   }
 
 
-  getContainerStyleObj() {
+  getContainerStyleObj(directionStyle) {
+    const startObj = {};
+    
+    for (const [directionProperty, value] of Object.entries(directionStyle.flexContainerStyle)) {
+      startObj[directionProperty] = value[0];
+    }
+
     return Object.entries(this.flexContainerStyle).reduce(
       (styleObj, [property, value]) => {
-        styleObj[property] = value[0];
+        let propertyValue = value[0];
+
+        const existingStyle = styleObj[property];
+        if (existingStyle) {
+          propertyValue = existingStyle + propertyValue;
+        }
+
+        styleObj[property] = propertyValue;
         return styleObj;
       },
-      {}
+      startObj
     );
   }
 
@@ -94,12 +114,43 @@ export default class Example {
     return value.replace(/\{random\}/g, util.getRandomInInterval(0, upperLimit, upperLimit + index));
   }
 
-  renderStyleObject(styleObject, label) {
+  prefixDeclarations(declarationList, prefixDeclaration) {
+    return declarationList.map(declaration => {
+      if (Example.getStyleDeclarationProperty(declaration) === Example.getStyleDeclarationProperty(prefixDeclaration)) {
+        return Example.setStyleDeclarationValue(declaration, Example.getStyleDeclarationValue(prefixDeclaration) + Example.getStyleDeclarationValue(declaration));
+      } else {
+        return declaration;
+      }
+    });
+  }
+
+  renderStyleObject(styleObject, prefixStyle = {}) {
     const styleObjectEntries = Object.entries(styleObject);
+
+    for (const declaration of Object.entries(prefixStyle)) {
+      if (styleObject[Example.getStyleDeclarationProperty(declaration)]) {
+        // prefix everything.
+        this.prefixDeclarations(styleObjectEntries, declaration);
+      } else {
+        styleObjectEntries.unshift(declaration);
+      }
+    }
+
+
     if (styleObjectEntries.length === 0) {
-      return [ p(".text-muted", "No specific style.") ];
+      return [ p('.text-muted', 'No specific style.') ];
     } else {
-      return styleObjectEntries.map(
+      const sortedStyleObjectEntries = styleObjectEntries.sort(
+        (left, right) => {
+          if (Example.getStyleDeclarationProperty(left) < Example.getStyleDeclarationProperty(right)) {
+            return -1;
+          } else if (Example.getStyleDeclarationProperty(left) > Example.getStyleDeclarationProperty(right)) {
+            return 1;
+          }
+          return 0;
+        });
+
+      return sortedStyleObjectEntries.map(
           (declaration) => div('.key-value', [ 
             div('.key', Example.getStyleDeclarationProperty(declaration)), 
             div('.eq', [i('.icon-eq')]), 
@@ -118,13 +169,13 @@ export default class Example {
     }
   }
 
-  toHyperscript() {
+  toHyperscript(directionStyle) {
     return [
       h1('.example-style-heading', this.title),
       h2('Flex items style'),
       div('.key-value-container', this.renderStyleObject(this.flexItemsStyle)),
       h2('Flex container style'),
-      div('.key-value-container', this.renderStyleObject(this.flexContainerStyle))
+      div('.key-value-container', this.renderStyleObject(this.flexContainerStyle, directionStyle.flexContainerStyle))
     ];
   }
 }

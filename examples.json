@@ -2,8 +2,22 @@
   "baseStyles": {
     "flexItemsStyle": {},
     "flexContainerStyle": {
-      "display": ["flex"]
-    }
+      "display": ["flex", {"moreInfo": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes"}]
+    },
+    "directionExamples": [
+      {
+        "title": "row",
+        "flexContainerStyle": {
+            "flex-direction": ["row", {"isDefault": true, "moreInfo": "https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction"}]
+        }
+      },
+      {
+        "title": "column",
+        "flexContainerStyle": {
+            "flex-direction": ["column", {"moreInfo": "https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction"}]
+        }
+      }
+    ]
   },
   "examples": [
     { 
@@ -13,22 +27,17 @@
           "title": "Test 1",
           "flexItemsStyle": {
             "background-color": ["yellow"]
-          },
-          "flexContainerStyle": {
-            "flex-direction": ["row", {"isDefault": true}]
           }
         },
         {
           "title": "Equal space between items",
           "flexContainerStyle": {
-            "flex-direction": ["row", {"isDefault": true}],
             "justify-content": ["space-between"]
           }
         },
         {
           "title": "Equal space around items",
           "flexContainerStyle": {
-            "flex-direction": ["row", {"isDefault": true}],
             "justify-content": ["space-around", {"moreInfo": "https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content"}]
           }
         },
@@ -38,16 +47,7 @@
             "background-color": ["green"]
           },
           "flexContainerStyle": {
-            "flex-direction": ["row-reverse"]
-          }
-        },
-        {
-          "title": "Direction: Column",
-          "flexItemsStyle": {
-            "background-color": ["blue"]
-          },
-          "flexContainerStyle": {
-            "flex-direction": ["column"]
+            "flex-direction": ["-reverse"]
           }
         },
         {

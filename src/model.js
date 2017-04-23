@@ -1,6 +1,7 @@
 import Example from './example';
 import FlexItemSize from './flexitemsize';
 const examplesData = require('../examples.json');
+import util from './util';
 
 if (!Array.isArray(examplesData.examples) || examplesData.examples.length < 1) {
   throw new RangeError('Examples must be an array of a least length 1.');
@@ -15,19 +16,27 @@ for (const [a, groupOfExamples] of examplesData.examples.entries()) {
     examples.set(exampleIndex, new Example(e.title,
       Object.assign({}, examplesData.baseStyles.flexItemsStyle, e.flexItemsStyle), 
       Object.assign({}, examplesData.baseStyles.flexContainerStyle, e.flexContainerStyle),
-      groupOfExamples.group.charAt(0).toUpperCase() + groupOfExamples.group.slice(1)
+      util.toUpperCaseFirst(groupOfExamples.group)
     ));
     exampleIndex = exampleIndex + 1;
   }
 }
 
-const maxNumberOfFlexItems = 100;
+const directionExamples = new Map();
+
+for (const directionExample of examplesData.baseStyles.directionExamples.values()) {
+  directionExamples.set(directionExample.title, directionExample);
+}
+
+
+const maxNumberOfFlexItems = 60;
 const minNumberOfFlexItems = 1;
 
 const flexItemSizes = new Map();
-flexItemSizes.set(0, new FlexItemSize(100, 100));
-flexItemSizes.set(1, new FlexItemSize(200, 200));
-flexItemSizes.set(2, new FlexItemSize(250, 250));
+flexItemSizes.set(0, new FlexItemSize(50, 50));
+flexItemSizes.set(1, new FlexItemSize(100, 100));
+flexItemSizes.set(2, new FlexItemSize(200, 200));
+flexItemSizes.set(3, new FlexItemSize(250, 250));
 
 const defaultState = {
   version: VERSION,
@@ -35,8 +44,9 @@ const defaultState = {
   rightStates: [],
   selectedExample: 0,
   showMultipleExamples: false,
-  numberOfFlexItems: 5,
-  flexItemSize: 0
+  numberOfFlexItems: 3,
+  flexItemSize: 1,
+  direction: 'row'
 };
 
 export {
@@ -44,5 +54,6 @@ export {
   minNumberOfFlexItems,
   maxNumberOfFlexItems,
   examples,
-  flexItemSizes
+  flexItemSizes,
+  directionExamples
 };

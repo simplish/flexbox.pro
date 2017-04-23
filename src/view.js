@@ -11,13 +11,15 @@ import {
   minNumberOfFlexItems,
   maxNumberOfFlexItems,
   examples,
-  flexItemSizes
+  flexItemSizes,
+  directionExamples
 } from './model';
 
 import FlexItemSize from './flexitemsize';
 
 import Example from './example';
 import FlexItem from './flexitem';
+import util from './util';
 
 
 export default function view(state$) {
@@ -33,6 +35,11 @@ export default function view(state$) {
                   button('#prev-btn.btn.btn-default.icon-left', {attrs: {type: 'button', accesskey: 'o', title: 'Previous state [o]', disabled: state.leftStates.length <= 0 ? 'disabled' : null}}),
                   button('#next-btn.btn.btn-default.icon-right', {attrs: {type: 'button', accesskey: 'p', title: 'Next state [p]', disabled: state.rightStates.length <= 0 ? 'disabled' : null}})
                 ]),
+                div('.form-group',
+                  Array.from(directionExamples.keys()).map(direction => {
+                    return label('.radio-inline', {}, [ input('.direction-radio', {attrs: {type: 'radio', value: direction, name: 'direction-radio', checked: state.direction === direction ? 'checked' : null}}), util.toUpperCaseFirst(direction) ]);
+                  })
+                ),
                 div('.form-group', [
                   label({attrs: {for: 'selecter'}}, 'Example'),
                   div('.mult', [
@@ -58,9 +65,9 @@ export default function view(state$) {
               ])
             ])
           ]),
-          div('.right', examples.get(state.selectedExample).toHyperscript())
+          div('.right', examples.get(state.selectedExample).toHyperscript(directionExamples.get(state.direction)))
         ]),
-        div('.view', { style: examples.get(state.selectedExample).getContainerStyleObj() }, FlexItem.generateFlexItems(
+        div('.view', { style: examples.get(state.selectedExample).getContainerStyleObj(directionExamples.get(state.direction)) }, FlexItem.generateFlexItems(
           state.numberOfFlexItems,
           examples.get(state.selectedExample),
           flexItemSizes.get(state.flexItemSize)
