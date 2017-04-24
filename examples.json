@@ -2,31 +2,114 @@
   "baseStyles": {
     "flexItemsStyle": {},
     "flexContainerStyle": {
-      "display": ["flex", {"moreInfo": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes"}]
+      "display": ["flex", {
+        "moreInfo": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes"
+      }]
     },
-    "directionExamples": [
-      {
+    "directionExamples": [{
         "title": "row",
         "flexContainerStyle": {
-            "flex-direction": ["row", {"isDefault": true, "moreInfo": "https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction"}]
+          "flex-direction": ["row", {
+            "isDefault": true,
+            "moreInfo": "https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction"
+          }]
         }
       },
       {
         "title": "column",
         "flexContainerStyle": {
-            "flex-direction": ["column", {"moreInfo": "https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction"}]
+          "flex-direction": ["column", {
+            "moreInfo": "https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction"
+          }]
         }
       }
     ]
   },
-  "examples": [
-    { 
-      "group": "basic",
-      "examplesInGroup": [
+  "examples": [{
+      "group": "Default values",
+      "examplesInGroup": [{
+        "title": "Everything default",
+        "flexContainerStyle": {
+          "justify-content": ["flex-start", {
+            "isDefault": true
+          }],
+          "align-items": ["stretch", {
+            "isDefault": true
+          }],
+          "align-content": ["stretch", {
+            "isDefault": true
+          }],
+          "flex-wrap": ["nowrap", {
+            "isDefault": true
+          }]
+        },
+        "flexItemsStyle": {
+          "order": ["0", {
+            "isDefault": true
+          }]
+        }
+      }]
+    },
+    {
+      "group": "Element Order",
+      "examplesInGroup": [{
+          "title": "Reverse the main axis order",
+          "flexContainerStyle": {
+            "flex-direction": ["-reverse"]
+          }
+        },
         {
-          "title": "Test 1",
+          "title": "Change the order",
           "flexItemsStyle": {
-            "background-color": ["yellow"]
+            "order": ["{random}"]
+          }
+        }
+      ]
+    },
+    {
+      "group": "Element Wrapping",
+      "examplesInGroup": [{
+          "title": "No wrap",
+          "flexContainerStyle": {
+            "flex-wrap": ["nowrap", {
+              "isDefault": true
+            }]
+          }
+        },
+        {
+          "title": "Normal wrap",
+          "flexContainerStyle": {
+            "flex-wrap": ["wrap"]
+          }
+        },
+        {
+          "title": "Reverse wrap, lines from bottom up",
+          "flexContainerStyle": {
+            "flex-wrap": ["wrap-reverse"]
+          }
+        }
+      ]
+    },
+    {
+      "group": "Distribute items along main axis",
+      "examplesInGroup": [{
+          "title": "Stacked from start",
+          "flexContainerStyle": {
+            "justify-content": ["flex-start", {
+              "isDefault": true
+            }]
+          }
+        },
+        {
+          "title": "Stacked from end",
+          "flexContainerStyle": {
+            "justify-content": ["flex-end"]
+          }
+        },
+        {
+          "title": "Centered",
+          "flexContainerStyle": {
+            "justify-content": ["center"]
           }
         },
         {
@@ -38,14 +121,106 @@
         {
           "title": "Equal space around items",
           "flexContainerStyle": {
-            "justify-content": ["space-around", {"moreInfo": "https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content"}]
+            "justify-content": ["space-around", {
+              "moreInfo": "https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content"
+            }]
+          }
+        }
+      ]
+    },
+    {
+      "group": "Distribute items along cross axis' lines",
+      "examplesInGroup": [{
+          "title": "Fill avaible space of cross axis",
+          "flexContainerStyle": {
+            "flex-wrap": ["wrap"],
+            "align-items": ["stretch", {
+              "isDefault": true
+            }]
           }
         },
         {
+          "title": "Start of cross axis",
+          "flexContainerStyle": {
+            "flex-wrap": ["wrap"],
+            "align-items": ["flex-start"]
+          }
+        },
+        {
+          "title": "Items baseline",
+          "flexContainerStyle": {
+            "flex-wrap": ["wrap"],
+            "align-items": ["baseline"]
+          }
+        },
+        {
+          "title": "End of cross axis",
+          "flexContainerStyle": {
+            "flex-wrap": ["wrap"],
+            "align-items": ["flex-end"]
+          }
+        },
+        {
+          "title": "Center of cross axis",
+          "flexContainerStyle": {
+            "flex-wrap": ["wrap"],
+            "align-items": ["center"]
+          }
+        }
+      ]
+    },
+    {
+      "group": "Distribute lines along cross axis",
+      "examplesInGroup": [{
+          "title": "Fill avaible space of cross axis",
+          "flexContainerStyle": {
+            "flex-wrap": ["wrap"],
+            "align-content": ["stretch", {
+              "isDefault": true
+            }]
+          }
+        },
+        {
+          "title": "Start of cross axis",
+          "flexContainerStyle": {
+            "flex-wrap": ["wrap"],
+            "align-content": ["flex-start"]
+          }
+        },
+        {
+          "title": "End of cross axis",
+          "flexContainerStyle": {
+            "flex-wrap": ["wrap"],
+            "align-content": ["flex-end"]
+          }
+        },
+        {
+          "title": "Center of cross axis",
+          "flexContainerStyle": {
+            "flex-wrap": ["wrap"],
+            "align-content": ["center"]
+          }
+        },
+        {
+          "title": "Space between",
+          "flexContainerStyle": {
+            "flex-wrap": ["wrap"],
+            "align-content": ["space-between"]
+          }
+        },
+        {
+          "title": "Space around",
+          "flexContainerStyle": {
+            "flex-wrap": ["wrap"],
+            "align-content": ["space-around"]
+          }
+        }
+      ]
+    },
+    {
+      "group": "Combinations",
+      "examplesInGroup": [{
           "title": "Test 2",
-          "flexItemsStyle": {
-            "background-color": ["green"]
-          },
           "flexContainerStyle": {
             "flex-direction": ["-reverse"]
           }
