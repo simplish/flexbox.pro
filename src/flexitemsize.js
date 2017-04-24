@@ -11,10 +11,14 @@ export default class FlexItemSize {
   static generateHyperScriptOptions(flexItemSizesMap, state) {
     return Array.from(flexItemSizesMap.entries())
       .map(([v, size]) => {
+        const isSelected = state.flexItemSize === v;
         return option('.option', {
           attrs: {
             value: v,
-            selected: state.flexItemSize === v ? 'selected' : null
+            selected: isSelected
+          },
+          props: {
+            selected: isSelected
           }
         }, size.width + 'X' + size.height);
       });

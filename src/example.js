@@ -36,10 +36,14 @@ export default class Example {
   static generateHyperScriptOptions(exampleMap, state) {
     const exampleGroups = Array.from(exampleMap.entries())
       .reduce((acc, [v, example]) => {
+        const isSelected = state.selectedExample === v;
         const opt = option('.option', {
           attrs: {
             value: v,
-            selected: state.selectedExample === v ? 'selected' : null
+            selected: isSelected
+          },
+          props: {
+            selected: isSelected
           }
         }, example.title);
 

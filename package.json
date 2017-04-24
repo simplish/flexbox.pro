@@ -15,10 +15,10 @@
     "eslint": "3.5.0"
   },
   "dependencies": {
-    "@cycle/dom": "^14.3.0",
-    "@cycle/isolate": "^1.4.0",
-    "@cycle/rxjs-run": "^3.3.0",
-    "@cycle/storage": "3.0.0",
+    "@cycle/dom": "^17.1.0",
+    "@cycle/isolate": "^2.1.0",
+    "@cycle/rxjs-run": "^7.0.0",
+    "@cycle/storage": "4.0.0",
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
     "babel-polyfill": "6.23.0",

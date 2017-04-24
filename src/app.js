@@ -85,6 +85,8 @@ const Operations = {
     return Object.assign({}, state, 
       { 
         direction: value,
+        leftStates: getNewLeftState(state),
+        rightStates: []
       }
     );
   },
@@ -101,6 +103,8 @@ const Operations = {
     return Object.assign({}, state, 
       { 
         showMultipleExamples: !state.showMultipleExamples,
+        leftStates: getNewLeftState(state),
+        rightStates: []
       }
     );
   },

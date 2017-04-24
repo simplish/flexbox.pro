@@ -37,7 +37,7 @@ export default function view(state$) {
                 ]),
                 div('.form-group',
                   Array.from(directionExamples.keys()).map(direction => {
-                    return label('.radio-inline', {}, [ input('.direction-radio', {attrs: {type: 'radio', value: direction, name: 'direction-radio', checked: state.direction === direction ? 'checked' : null}}), util.toUpperCaseFirst(direction) ]);
+                    return label('.radio-inline', {}, [ input('.direction-radio', {attrs: {type: 'radio', value: direction, name: 'direction-radio', checked: state.direction === direction}, props: {checked: state.direction === direction}}), util.toUpperCaseFirst(direction) ]);
                   })
                 ),
                 div('.form-group', [
@@ -55,6 +55,9 @@ export default function view(state$) {
                       type: 'range',
                       min: minNumberOfFlexItems,
                       max: maxNumberOfFlexItems
+                    },
+                    props: {
+                      value: state.numberOfFlexItems
                     }
                   })
                 ]),
