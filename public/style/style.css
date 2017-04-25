@@ -69,14 +69,17 @@
 
 .key-value {
   display: flex;
+  cursor: crosshair;
 }
 
 .key-value .eq {
   flex-grow: 1;
+  pointer-events: none;
 }
 
 .key-value .key {
   flex-basis: 200px;
+  pointer-events: none;
 }
 
 .key-value .value {
@@ -86,6 +89,7 @@
 .key-value .value .default-value {
   margin-left: 10px;
   color: goldenrod;
+  pointer-events: none;
 }
 
 .key-value .value .more-info {
@@ -128,4 +132,12 @@
 .example-style-heading {
   border-bottom: 1px solid #e5e5e5;
   padding-bottom: 10px;
+}
+
+.markable:hover {
+  background-color: gold;
+}
+
+.markable.active {
+  background-color: gold;
 }

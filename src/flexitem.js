@@ -10,7 +10,7 @@ export default class FlexItem {
   }
 
   generateHyperScript() {
-    return div('.flex-item', {
+    return div('.flex-item.markable', {
       style: Object.assign({}, 
         this.style, 
         {

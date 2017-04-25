@@ -7,7 +7,6 @@
   <title>Flex FTW</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/fontello.css">
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -22,6 +21,16 @@
 <body>
   <div id="app"></div>
   <script src="bundle.js"></script>
+  <script>
+    var markables = document.querySelectorAll(".markable");
+    markables.forEach(function (markable, index) {
+      markable.addEventListener('click', function (event) {
+        if (event.target.classList.contains('markable')) {
+          event.target.classList.toggle("active");
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>

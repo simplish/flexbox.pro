@@ -16,7 +16,8 @@ for (const [a, groupOfExamples] of examplesData.examples.entries()) {
     examples.set(exampleIndex, new Example(e.title,
       Object.assign({}, examplesData.baseStyles.flexItemsStyle, e.flexItemsStyle), 
       Object.assign({}, examplesData.baseStyles.flexContainerStyle, e.flexContainerStyle),
-      util.toUpperCaseFirst(groupOfExamples.group)
+      util.toUpperCaseFirst(groupOfExamples.group),
+      exampleIndex
     ));
     exampleIndex = exampleIndex + 1;
   }
@@ -46,7 +47,7 @@ const defaultState = {
   showMultipleExamples: false,
   numberOfFlexItems: 3,
   flexItemSize: 1,
-  direction: 'row'
+  direction: 'row',
 };
 
 export {

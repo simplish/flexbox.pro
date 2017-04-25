@@ -6,11 +6,12 @@ import {
 import util from './util';
 
 export default class Example {
-  constructor(title = '', flexItemsStyle = {}, flexContainerStyle = {}, group) {
+  constructor(title = '', flexItemsStyle = {}, flexContainerStyle = {}, group, index) {
     this.title = title;
     this.flexItemsStyle = flexItemsStyle;
     this.flexContainerStyle = flexContainerStyle;
     this.group = group;
+    this.exampleIndex = index;
   }
 
   static getStyleDeclarationValue(declaration) {
@@ -155,7 +156,7 @@ export default class Example {
         });
 
       return sortedStyleObjectEntries.map(
-          (declaration) => div('.key-value', [ 
+          (declaration, index) => div(`.key-value.markable`, [ 
             div('.key', Example.getStyleDeclarationProperty(declaration)), 
             div('.eq', [i('.icon-eq')]), 
             div('.value', [
