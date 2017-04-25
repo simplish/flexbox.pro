@@ -62,8 +62,12 @@ export default function view(state$) {
                   })
                 ]),
                 div('.form-group', [
-                  label({attrs: {for: 'flex-item-size-select'}}, 'Flex item size'),
-                  select('#flex-item-size-select.form-control', FlexItemSize.generateHyperScriptOptions(flexItemSizes, state))
+                  label({attrs: {for: 'flex-item-width-select'}}, 'Flex item width'),
+                  select('#flex-item-width-select.form-control', FlexItemSize.generateHyperScriptOptions(flexItemSizes, state))
+                ]),
+                div('.form-group', [
+                  label({attrs: {for: 'flex-item-height-select'}}, 'Flex item height'),
+                  select('#flex-item-height-select.form-control', FlexItemSize.generateHyperScriptOptions(flexItemSizes, state))
                 ])
               ])
             ])
@@ -73,7 +77,8 @@ export default function view(state$) {
         div('.view', { style: examples.get(state.selectedExample).getContainerStyleObj(directionExamples.get(state.direction)) }, FlexItem.generateFlexItems(
           state.numberOfFlexItems,
           examples.get(state.selectedExample),
-          flexItemSizes.get(state.flexItemSize)
+          flexItemSizes.get(state.flexItemWidth),
+          flexItemSizes.get(state.flexItemHeight)
         ).map(flexItem => flexItem.generateHyperScript()))
       ])
     );

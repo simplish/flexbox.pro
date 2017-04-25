@@ -90,10 +90,19 @@ const Operations = {
       }
     );
   },
-  changeSizeOfFlexItems: value => state => {
+  changeWidthOfFlexItems: value => state => {
     return Object.assign({}, state, 
       { 
-        flexItemSize: parseInt(value),
+        flexItemWidth: parseInt(value),
+        leftStates: getNewLeftState(state),
+        rightStates: []
+      }
+    );
+  },
+  changeHeightOfFlexItems: value => state => {
+    return Object.assign({}, state, 
+      { 
+        flexItemHeight: parseInt(value),
         leftStates: getNewLeftState(state),
         rightStates: []
       }
@@ -133,7 +142,11 @@ function intent(DOM) {
     prevStateClicked: DOM.select('#prev-btn').events('click'),
     nextStateClicked: DOM.select('#next-btn').events('click'),
     multipleExamplesClicked: DOM.select('#show-all-examples-btn').events('click'),
-    flexItemSizeChanged: DOM.select('#flex-item-size-select').events('change')
+    flexItemWidthChanged: DOM.select('#flex-item-width-select').events('change')
+      .map(evt => {
+        return evt.target.value;
+      }),
+    flexItemHeightChanged: DOM.select('#flex-item-height-select').events('change')
       .map(evt => {
         return evt.target.value;
       })
@@ -151,9 +164,14 @@ function model(intents, startState$) {
       return Operations.changeNumberOfFlexItems(value);
     });
 
-  const changeSizeOfFlexItemsOperations$ = intents.flexItemSizeChanged
+  const changeWidthOfFlexItemsOperations$ = intents.flexItemWidthChanged
     .map(value => {
-      return Operations.changeSizeOfFlexItems(value);
+      return Operations.changeWidthOfFlexItems(value);
+    });
+
+  const changeHeightOfFlexItemsOperations$ = intents.flexItemHeightChanged
+    .map(value => {
+      return Operations.changeHeightOfFlexItems(value);
     });
   
   const changeDirectionOperations$ = intents.directionChanged
@@ -185,7 +203,8 @@ function model(intents, startState$) {
       changeNumberOfFlexItemsOperations$, 
       switchToPrevStateOperations$, 
       switchToNextStateOperations$, 
-      changeSizeOfFlexItemsOperations$,
+      changeWidthOfFlexItemsOperations$,
+      changeHeightOfFlexItemsOperations$,
       showMultipleExamplesOperations$,
       changeDirectionOperations$
     )

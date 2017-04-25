@@ -20,7 +20,7 @@ export default class FlexItemSize {
           props: {
             selected: isSelected
           }
-        }, size.width + 'X' + size.height);
+        }, size ? size.width : 'Auto');
       });
   }
 }
