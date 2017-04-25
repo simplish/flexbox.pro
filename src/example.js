@@ -1,17 +1,19 @@
 import {
   option, optgroup,
-  h1, h2,
+  h1, h2, h4,
   div, i, a, p
 } from '@cycle/dom';
 import util from './util';
 
 export default class Example {
-  constructor(title = '', flexItemsStyle = {}, flexContainerStyle = {}, group, index) {
+  constructor(title = '', flexItemsStyle = {}, flexContainerStyle = {}, group, index, flexItemsStyleIdentical, flexContainerStyleIdentical) {
     this.title = title;
     this.flexItemsStyle = flexItemsStyle;
     this.flexContainerStyle = flexContainerStyle;
     this.group = group;
     this.exampleIndex = index;
+    this.flexItemsStyleIdentical = flexItemsStyleIdentical;
+    this.flexContainerStyleIdentical = flexContainerStyleIdentical;
   }
 
   static getStyleDeclarationValue(declaration) {
@@ -175,12 +177,23 @@ export default class Example {
   }
 
   toHyperscript(directionStyle) {
+    console.log("identical style item", this.flexItemsStyleIdentical);
     return [
       h1('.example-style-heading', this.title),
       h2('Flex items style'),
       div('.key-value-container', this.renderStyleObject(this.flexItemsStyle)),
+      !this.flexItemsStyleIdentical ? undefined : 
+        div('.identical-style', [
+          h4('Identical to'),
+          div('.key-value-container', this.renderStyleObject(this.flexItemsStyleIdentical))
+        ]),
       h2('Flex container style'),
-      div('.key-value-container', this.renderStyleObject(this.flexContainerStyle, directionStyle.flexContainerStyle))
+      div('.key-value-container', this.renderStyleObject(this.flexContainerStyle, directionStyle.flexContainerStyle)),
+      !this.flexContainerStyleIdentical ? undefined : 
+        div('.identical-style', [
+          h4('Identical to'),
+          div('.key-value-container', this.renderStyleObject(this.flexContainerStyleIdentical))
+        ]),
     ];
   }
 }

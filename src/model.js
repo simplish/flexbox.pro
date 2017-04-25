@@ -17,7 +17,9 @@ for (const [a, groupOfExamples] of examplesData.examples.entries()) {
       Object.assign({}, examplesData.baseStyles.flexItemsStyle, e.flexItemsStyle), 
       Object.assign({}, examplesData.baseStyles.flexContainerStyle, e.flexContainerStyle),
       util.toUpperCaseFirst(groupOfExamples.group),
-      exampleIndex
+      exampleIndex,
+      e.flexItemsStyleIdentical, 
+      e.flexContainerStyleIdentical
     ));
     exampleIndex = exampleIndex + 1;
   }

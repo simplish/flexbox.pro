@@ -141,3 +141,11 @@
 .markable.active {
   background-color: gold;
 }
+
+.identical-style {
+  color: #777777;
+}
+
+.identical-style:hover {
+  color: #333333;
+}

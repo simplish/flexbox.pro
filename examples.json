@@ -46,6 +46,23 @@
         "flexItemsStyle": {
           "order": ["0", {
             "isDefault": true
+          }],
+          "flex-basis": ["auto", {
+            "isDefault": true
+          }],
+          "flex-shrink": ["1", {
+            "isDefault": true
+          }],
+          "flex-grow": ["0", {
+            "isDefault": true
+          }]
+        },
+        "flexItemsStyleIdentical": {
+          "order": ["0", {
+            "isDefault": true
+          }],
+          "flex": ["0 1 auto", {
+            "isDefault": true
           }]
         }
       }]
