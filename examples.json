@@ -78,7 +78,7 @@
         {
           "title": "Change the order",
           "flexItemsStyle": {
-            "order": ["{random}"]
+            "order": ["{random}{0}{10}"]
           }
         }
       ]
@@ -235,6 +235,42 @@
       ]
     },
     {
+      "group": "Grow and shrink",
+      "examplesInGroup": [{
+          "title": "Grow with default shrink",
+          "flexItemsStyle": {
+            "flex-grow": ["1"],
+            "flex-basis": ["auto", {
+            "isDefault": true
+            }],
+            "flex-shrink": ["1", {
+              "isDefault": true
+            }]
+          }
+        },
+        {
+          "title": "Grow but no shrink",
+          "flexItemsStyle": {
+            "flex-grow": ["1"],
+            "flex-basis": ["auto", {
+            "isDefault": true
+            }],
+            "flex-shrink": ["0"]
+          }
+        },
+        {
+          "title": "Grow relative to each other",
+          "flexItemsStyle": {
+            "flex-grow": ["{random}{1}{5}"],
+            "flex-basis": ["0", {
+            "isDefault": true
+            }],
+            "flex-shrink": ["0"]
+          }
+        }
+      ]
+    },
+    {
       "group": "Combinations",
       "examplesInGroup": [{
           "title": "Test 2",
@@ -245,7 +281,7 @@
         {
           "title": "Items visible order",
           "flexItemsStyle": {
-            "order": ["{random}"]
+            "order": ["{random}{0}{10}"]
           }
         }
       ]

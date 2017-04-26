@@ -1,13 +1,13 @@
 import {
   div
 } from '@cycle/dom';
+import util from './util';
 
 export default class FlexItem {
   constructor(content = '', style = {}, width, height) {
     this.content = content;
     this.style = style; // An object like {'background-color': '#22f'
 
-    console.log(width);
     if (width) {
       this.width = width.width + 'px';
     } else {
@@ -33,7 +33,10 @@ export default class FlexItem {
           height: this.height,
           width: this.width
         }
-      )
+      ),
+      hook: {
+        insert: vnode => util.addToggleMarkListener(vnode.elm)
+      }
     }, [this.content]);
   }
 

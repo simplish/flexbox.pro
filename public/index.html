@@ -21,14 +21,17 @@
 <body>
   <div id="app"></div>
   <script src="bundle.js"></script>
+
+  <button type="button" id="reset-marks" accesskey="x">Reset marks</button>
+
   <script>
-    var markables = document.querySelectorAll(".markable");
-    markables.forEach(function (markable, index) {
-      markable.addEventListener('click', function (event) {
-        if (event.target.classList.contains('markable')) {
-          event.target.classList.toggle("active");
-        }
-      });
+    var resetMarkableButton = document.querySelector("#reset-marks");
+    resetMarkableButton.addEventListener('click', function (event) {
+      console.log("reset");
+        var markables = document.querySelectorAll(".markable");
+        markables.forEach(function (markable, index) {
+          markable.classList.remove("active");
+        });
     });
   </script>
 </body>

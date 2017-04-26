@@ -33,4 +33,12 @@ export default class Util {
   static toUpperCaseFirst(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
+
+  static addToggleMarkListener(elm) {
+    elm.addEventListener('click', function (event) {
+        if (event.target.classList.contains('markable')) {
+          event.target.classList.toggle("active");
+        }
+      });
+  }
 }

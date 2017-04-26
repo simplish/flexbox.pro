@@ -6,7 +6,6 @@ const app = express();
 app.set('port', process.env.PORT || 5000);
 
 const staticPath = path.join(__dirname, '../build');
-console.log(staticPath);
 
 app.use('/', express.static(staticPath))
 

@@ -110,15 +110,15 @@ export default class Example {
   getItemStyleObj(itemIndex = 0, totalNumberOfItems = 0) {
     return Object.entries(this.flexItemsStyle).reduce(
       (styleObj, [property, value]) => {
-        styleObj[property] = this.replaceRandom(value[0], itemIndex, totalNumberOfItems);
+        styleObj[property] = this.replaceRandom(value[0], itemIndex);
         return styleObj;
       },
       {}
     );
   }
 
-  replaceRandom(value, index, upperLimit) {
-    return value.replace(/\{random\}/g, util.getRandomInInterval(0, upperLimit, upperLimit + index));
+  replaceRandom(value, index) {
+    return value.replace(/\{random\}\{([0-9]+)\}\{([0-9]+)\}/g, (match, p1, p2) => util.getRandomInInterval(p1, p2, index + 1));
   }
 
   prefixDeclarations(declarationList, prefixDeclaration) {
@@ -158,7 +158,11 @@ export default class Example {
         });
 
       return sortedStyleObjectEntries.map(
-          (declaration, index) => div(`.key-value.markable`, [ 
+          (declaration, index) => div(`.key-value.markable`, {
+            hook: {
+              insert: vnode => util.addToggleMarkListener(vnode.elm)
+            }
+          }, [ 
             div('.key', Example.getStyleDeclarationProperty(declaration)), 
             div('.eq', [i('.icon-eq')]), 
             div('.value', [
