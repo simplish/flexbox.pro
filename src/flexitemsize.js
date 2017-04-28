@@ -8,10 +8,10 @@ export default class FlexItemSize {
     this.height = height;
   }
 
-  static generateHyperScriptOptions(flexItemSizesMap, state) {
+  static generateHyperScriptOptions(flexItemSizesMap, state, sizeProperty) {
     return Array.from(flexItemSizesMap.entries())
       .map(([v, size]) => {
-        const isSelected = state.flexItemSize === v;
+        const isSelected = state[sizeProperty] === v;
         return option('.option', {
           attrs: {
             value: v,

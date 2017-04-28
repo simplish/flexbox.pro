@@ -55,6 +55,9 @@
           }],
           "flex-grow": ["0", {
             "isDefault": true
+          }],
+          "align-self": ["auto", {
+            "isDefault": true
           }]
         },
         "flexItemsStyleIdentical": {
@@ -241,7 +244,7 @@
           "flexItemsStyle": {
             "flex-grow": ["1"],
             "flex-basis": ["auto", {
-            "isDefault": true
+              "isDefault": true
             }],
             "flex-shrink": ["1", {
               "isDefault": true
@@ -253,9 +256,20 @@
           "flexItemsStyle": {
             "flex-grow": ["1"],
             "flex-basis": ["auto", {
-            "isDefault": true
+              "isDefault": true
             }],
             "flex-shrink": ["0"]
+          }
+        },
+        {
+          "title": "Shrink but no grow",
+          "flexItemsStyle": {
+            "flex-shrink": ["1", {
+              "isDefault": true
+            }],
+            "flex-grow": ["0", {
+              "isDefault": true
+            }]
           }
         },
         {
@@ -263,9 +277,72 @@
           "flexItemsStyle": {
             "flex-grow": ["{random}{1}{5}"],
             "flex-basis": ["0", {
-            "isDefault": true
+              "isDefault": true
             }],
             "flex-shrink": ["0"]
+          }
+        },
+        {
+          "title": "Shrink relative to each other",
+          "flexItemsStyle": {
+            "flex-shrink": ["{random}{1}{5}"],
+            "flex-grow": ["0", {
+              "isDefault": true
+            }]
+          }
+        },
+        {
+          "title": "Basis overrides with",
+          "flexItemsStyle": {
+            "flex-basis": ["50%"],
+            "flex-shrink": ["0"],
+            "flex-grow": ["0", {
+              "isDefault": true
+            }]
+          },
+          "flexItemsStyleIdentical": {
+            "flex": ["0 0 50%"]
+          }
+        },
+        {
+          "title": "All items grows equal from there basis",
+          "flexItemsStyle": {
+            "flex-basis": ["{random}{0}{3}[\"100px\", \"200px\", \"300px\"]"],
+            "flex-shrink": ["1"],
+            "flex-grow": ["1"]
+          },
+          "flexItemsStyleIdentical": {
+            "flex": ["1 1 X"]
+          }
+        }
+      ]
+    },
+    {
+      "group": "Distribute items separetly",
+      "examplesInGroup": [{
+          "title": "Align self",
+          "flexItemsStyle": {
+            "align-self": ["{random}{0}{10}[\"center\", \"flex-end\", \"flex-start\", \"stretch\"]"]
+          },
+          "flexContainerStyle": {
+            "justify-content": ["center"],
+            "align-items": ["stretch", {
+              "isDefault": true
+            }],
+            "flex-wrap": ["wrap"]
+          }
+        },
+        {
+          "title": "Justify self",
+          "flexItemsStyle": {
+            "justify-self": ["{random}{0}{10}[\"flex-end\", \"flex-start\"]"]
+          },
+          "flexContainerStyle": {
+            "justify-content": ["center"],
+            "align-items": ["stretch", {
+              "isDefault": true
+            }],
+            "flex-wrap": ["wrap"]
           }
         }
       ]

@@ -65,7 +65,7 @@
 .key-value-container {
   display: flex;
   flex-direction: column;
-  max-width: 500px;
+  max-width: 600px;
 }
 
 .key-value {
@@ -84,7 +84,7 @@
 }
 
 .key-value .value {
-  flex-basis: 200px;
+  flex-basis: 300px;
 }
 
 .key-value .value .default-value {

@@ -63,11 +63,11 @@ export default function view(state$) {
                 ]),
                 div('.form-group', [
                   label({attrs: {for: 'flex-item-width-select'}}, 'Flex item width'),
-                  select('#flex-item-width-select.form-control', FlexItemSize.generateHyperScriptOptions(flexItemSizes, state))
+                  select('#flex-item-width-select.form-control', FlexItemSize.generateHyperScriptOptions(flexItemSizes, state, 'flexItemWidth'))
                 ]),
                 div('.form-group', [
                   label({attrs: {for: 'flex-item-height-select'}}, 'Flex item height'),
-                  select('#flex-item-height-select.form-control', FlexItemSize.generateHyperScriptOptions(flexItemSizes, state))
+                  select('#flex-item-height-select.form-control', FlexItemSize.generateHyperScriptOptions(flexItemSizes, state, 'flexItemHeight'))
                 ])
               ])
             ])

@@ -118,7 +118,16 @@ export default class Example {
   }
 
   replaceRandom(value, index) {
-    return value.replace(/\{random\}\{([0-9]+)\}\{([0-9]+)\}/g, (match, p1, p2) => util.getRandomInInterval(p1, p2, index + 1));
+    return value.replace(/\{random\}\{([0-9]+)\}\{([0-9]+)\}(\[.*\])?/g, (match, p1, p2, p3) => {
+      console.log("p3 is ", p3);
+      const num = util.getRandomInInterval(p1, p2, index + 1);
+      if (!p3) {
+        return num;
+      } else {
+        const propertyArray = JSON.parse(p3);
+        return propertyArray[num % propertyArray.length];
+      }
+    });
   }
 
   prefixDeclarations(declarationList, prefixDeclaration) {

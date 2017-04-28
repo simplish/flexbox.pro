@@ -41,6 +41,8 @@ flexItemSizes.set(1, new FlexItemSize(50, 50));
 flexItemSizes.set(2, new FlexItemSize(100, 100));
 flexItemSizes.set(3, new FlexItemSize(200, 200));
 flexItemSizes.set(4, new FlexItemSize(250, 250));
+flexItemSizes.set(5, new FlexItemSize(350, 350));
+flexItemSizes.set(6, new FlexItemSize(500, 500));
 
 const defaultState = {
   version: VERSION,
