@@ -94,18 +94,27 @@
             "flex-wrap": ["nowrap", {
               "isDefault": true
             }]
+          },
+          "flexContainerStyleIdentical": {
+            "flex-flow": ["nowrap dir"]
           }
         },
         {
           "title": "Normal wrap",
           "flexContainerStyle": {
             "flex-wrap": ["wrap"]
+          },
+          "flexContainerStyleIdentical": {
+            "flex-flow": ["wrap dir"]
           }
         },
         {
           "title": "Reverse wrap, lines from bottom up",
           "flexContainerStyle": {
             "flex-wrap": ["wrap-reverse"]
+          },
+          "flexContainerStyleIdentical": {
+            "flex-flow": ["wrap-reverse dir"]
           }
         }
       ]
@@ -249,6 +258,9 @@
             "flex-shrink": ["1", {
               "isDefault": true
             }]
+          },
+          "flexItemsStyleIdentical": {
+            "flex": ["1 1 auto"]
           }
         },
         {
@@ -259,6 +271,9 @@
               "isDefault": true
             }],
             "flex-shrink": ["0"]
+          },
+          "flexItemsStyleIdentical": {
+            "flex": ["1 0 auto"]
           }
         },
         {
@@ -269,26 +284,43 @@
             }],
             "flex-grow": ["0", {
               "isDefault": true
+            }],
+            "flex-basis": ["auto", {
+              "isDefault": true
+            }]
+          },
+          "flexItemsStyleIdentical": {
+            "flex": ["0 1 auto", {
+              "isDefault": true
             }]
           }
         },
         {
           "title": "Grow relative to each other",
           "flexItemsStyle": {
-            "flex-grow": ["{random}{1}{5}"],
+            "flex-grow": ["{random}{0}{5}"],
             "flex-basis": ["0", {
               "isDefault": true
             }],
             "flex-shrink": ["0"]
+          },
+          "flexItemsStyleIdentical": {
+            "flex": ["X 0 0"]
           }
         },
         {
           "title": "Shrink relative to each other",
           "flexItemsStyle": {
             "flex-shrink": ["{random}{1}{5}"],
+            "flex-basis": ["0", {
+              "isDefault": true
+            }],
             "flex-grow": ["0", {
               "isDefault": true
             }]
+          },
+          "flexItemsStyleIdentical": {
+            "flex": ["0 X auto"]
           }
         },
         {
@@ -330,35 +362,6 @@
               "isDefault": true
             }],
             "flex-wrap": ["wrap"]
-          }
-        },
-        {
-          "title": "Justify self",
-          "flexItemsStyle": {
-            "justify-self": ["{random}{0}{10}[\"flex-end\", \"flex-start\"]"]
-          },
-          "flexContainerStyle": {
-            "justify-content": ["center"],
-            "align-items": ["stretch", {
-              "isDefault": true
-            }],
-            "flex-wrap": ["wrap"]
-          }
-        }
-      ]
-    },
-    {
-      "group": "Combinations",
-      "examplesInGroup": [{
-          "title": "Test 2",
-          "flexContainerStyle": {
-            "flex-direction": ["-reverse"]
-          }
-        },
-        {
-          "title": "Items visible order",
-          "flexItemsStyle": {
-            "order": ["{random}{0}{10}"]
           }
         }
       ]

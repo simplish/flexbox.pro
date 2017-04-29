@@ -19,7 +19,7 @@ export default class FlexItem {
       this.lineHeight = height.height;
     } else {
       this.height = 'auto';
-      this.lineHeight = 150;
+      this.lineHeight = 80;
     }
   }
 
