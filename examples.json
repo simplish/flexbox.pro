@@ -28,7 +28,7 @@
   "examples": [{
       "group": "Default values",
       "examplesInGroup": [{
-        "title": "Everything default",
+        "title": "Everything is default",
         "flexContainerStyle": {
           "justify-content": ["flex-start", {
             "isDefault": true
@@ -61,30 +61,16 @@
           }]
         },
         "flexItemsStyleIdentical": {
-          "order": ["0", {
-            "isDefault": true
-          }],
           "flex": ["0 1 auto", {
+            "isDefault": true
+          }]
+        },
+        "flexContainerStyleIdentical": {
+          "flex-flow": ["dir nowrap", {
             "isDefault": true
           }]
         }
       }]
-    },
-    {
-      "group": "Element Order",
-      "examplesInGroup": [{
-          "title": "Reverse the main axis order",
-          "flexContainerStyle": {
-            "flex-direction": ["-reverse"]
-          }
-        },
-        {
-          "title": "Change the order",
-          "flexItemsStyle": {
-            "order": ["{random}{0}{10}"]
-          }
-        }
-      ]
     },
     {
       "group": "Element Wrapping",
@@ -247,6 +233,22 @@
       ]
     },
     {
+      "group": "Element Order",
+      "examplesInGroup": [{
+          "title": "Reverse the main axis order",
+          "flexContainerStyle": {
+            "flex-direction": ["-reverse"]
+          }
+        },
+        {
+          "title": "Change the order",
+          "flexItemsStyle": {
+            "order": ["{random}{0}{10}"]
+          }
+        }
+      ]
+    },
+    {
       "group": "Grow and shrink",
       "examplesInGroup": [{
           "title": "Grow with default shrink",
@@ -311,8 +313,8 @@
         {
           "title": "Shrink relative to each other",
           "flexItemsStyle": {
-            "flex-shrink": ["{random}{1}{5}"],
-            "flex-basis": ["0", {
+            "flex-shrink": ["{random}{1}{3}"],
+            "flex-basis": ["100%", {
               "isDefault": true
             }],
             "flex-grow": ["0", {
@@ -324,7 +326,7 @@
           }
         },
         {
-          "title": "Basis overrides with",
+          "title": "Basis overrides width",
           "flexItemsStyle": {
             "flex-basis": ["50%"],
             "flex-shrink": ["0"],

@@ -7,6 +7,7 @@ export default class FlexItem {
   constructor(content = '', style = {}, width, height) {
     this.content = content;
     this.style = style; // An object like {'background-color': '#22f'
+    this.padding = "0px";
 
     if (width) {
       this.width = width.width + 'px';
@@ -20,6 +21,10 @@ export default class FlexItem {
     } else {
       this.height = 'auto';
       this.lineHeight = 80;
+
+    if (!width && !height) {
+      this.padding = "30px";
+    }
     }
   }
 
@@ -31,7 +36,9 @@ export default class FlexItem {
           'font-size': this.lineHeight / 2 + 'px',
           lineHeight: this.lineHeight + 'px',
           height: this.height,
-          width: this.width
+          width: this.width,
+          paddingLeft: this.padding,
+          paddingRight: this.padding,
         }
       ),
       hook: {

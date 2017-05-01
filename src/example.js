@@ -79,6 +79,8 @@ export default class Example {
     if (showMultipleExamples) {
       attr.size = Example.numberOfExampleGroupsAndExamples(examples);
     }
+
+    attr.accesskey = 'e'
     
     return attr;
   }
@@ -190,21 +192,20 @@ export default class Example {
   }
 
   toHyperscript(directionStyle) {
-    console.log("identical style item", this.flexItemsStyleIdentical);
     return [
       h1('.example-style-heading', this.title),
       h2('Flex items style'),
       div('.key-value-container', this.renderStyleObject(this.flexItemsStyle)),
       !this.flexItemsStyleIdentical ? undefined : 
         div('.identical-style', [
-          h4('Identical to'),
+          h4('Shorhand properties'),
           div('.key-value-container', this.renderStyleObject(this.flexItemsStyleIdentical))
         ]),
       h2('Flex container style'),
       div('.key-value-container', this.renderStyleObject(this.flexContainerStyle, directionStyle.flexContainerStyle)),
       !this.flexContainerStyleIdentical ? undefined : 
         div('.identical-style', [
-          h4('Identical to'),
+          h4('Shorhand properties'),
           div('.key-value-container', this.renderStyleObject(this.flexContainerStyleIdentical))
         ]),
     ];

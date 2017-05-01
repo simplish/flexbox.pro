@@ -54,7 +54,8 @@ export default function view(state$) {
                       value: state.numberOfFlexItems,
                       type: 'range',
                       min: minNumberOfFlexItems,
-                      max: maxNumberOfFlexItems
+                      max: maxNumberOfFlexItems,
+                      accesskey: 'c'
                     },
                     props: {
                       value: state.numberOfFlexItems
@@ -63,11 +64,17 @@ export default function view(state$) {
                 ]),
                 div('.form-group', [
                   label({attrs: {for: 'flex-item-width-select'}}, 'Flex item width'),
-                  select('#flex-item-width-select.form-control', FlexItemSize.generateHyperScriptOptions(flexItemSizes, state, 'flexItemWidth'))
+                  select('#flex-item-width-select.form-control', { 
+                    attrs: {
+                      accesskey: 'v'
+                    }}, FlexItemSize.generateHyperScriptOptions(flexItemSizes, state, 'flexItemWidth'))
                 ]),
                 div('.form-group', [
                   label({attrs: {for: 'flex-item-height-select'}}, 'Flex item height'),
-                  select('#flex-item-height-select.form-control', FlexItemSize.generateHyperScriptOptions(flexItemSizes, state, 'flexItemHeight'))
+                  select('#flex-item-height-select.form-control', { 
+                    attrs: {
+                      accesskey: 'b'
+                    }}, FlexItemSize.generateHyperScriptOptions(flexItemSizes, state, 'flexItemHeight'))
                 ])
               ])
             ])
